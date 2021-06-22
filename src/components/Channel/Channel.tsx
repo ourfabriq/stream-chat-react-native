@@ -169,20 +169,20 @@ export type ChannelPropsWithContext<
   Me extends UnknownType = DefaultMessageType,
   Re extends UnknownType = DefaultReactionType,
   Us extends UnknownType = DefaultUserType,
-> = Partial<
-  Pick<
-    ChannelContextValue<At, Ch, Co, Ev, Me, Re, Us>,
-    | 'channel'
-    | 'EmptyStateIndicator'
-    | 'enforceUniqueReaction'
-    | 'giphyEnabled'
-    | 'hideDateSeparators'
-    | 'LoadingIndicator'
-    | 'maxTimeBetweenGroupedMessages'
-    | 'NetworkDownIndicator'
-    | 'StickyHeader'
-  >
-> &
+  > = Partial<
+    Pick<
+      ChannelContextValue<At, Ch, Co, Ev, Me, Re, Us>,
+      | 'channel'
+      | 'EmptyStateIndicator'
+      | 'enforceUniqueReaction'
+      | 'giphyEnabled'
+      | 'hideDateSeparators'
+      | 'LoadingIndicator'
+      | 'maxTimeBetweenGroupedMessages'
+      | 'NetworkDownIndicator'
+      | 'StickyHeader'
+    >
+  > &
   Pick<ChatContextValue<At, Ch, Co, Ev, Me, Re, Us>, 'client'> &
   Partial<
     Omit<
@@ -369,8 +369,8 @@ const ChannelWithContext = <
   Me extends UnknownType = DefaultMessageType,
   Re extends UnknownType = DefaultReactionType,
   Us extends UnknownType = DefaultUserType,
->(
-  props: PropsWithChildren<ChannelPropsWithContext<At, Ch, Co, Ev, Me, Re, Us>>,
+  >(
+    props: PropsWithChildren<ChannelPropsWithContext<At, Ch, Co, Ev, Me, Re, Us>>,
 ) => {
   const {
     additionalKeyboardAvoidingViewProps,
@@ -596,7 +596,7 @@ const ChannelWithContext = <
     };
   }, [channelId, messageId]);
 
-  const threadPropsExists = !!threadProps;
+  const threadId = threadProps?.id;
   useEffect(() => {
     if (threadProps) {
       setThread(threadProps);
@@ -606,7 +606,7 @@ const ChannelWithContext = <
     } else {
       setThread(null);
     }
-  }, [threadPropsExists]);
+  }, [threadId]);
 
   /**
    * CHANNEL CONSTANTS
@@ -827,13 +827,13 @@ const ChannelWithContext = <
     Re,
     Us
   >['loadChannelAtMessage'] = ({ after = 2, before = 30, messageId }) =>
-    channelQueryCall(async () => {
-      await queryAtMessage({ after, before, messageId });
+      channelQueryCall(async () => {
+        await queryAtMessage({ after, before, messageId });
 
-      if (messageId) {
-        setTargetedMessage(messageId);
-      }
-    });
+        if (messageId) {
+          setTargetedMessage(messageId);
+        }
+      });
 
   const loadChannel = () =>
     channelQueryCall(async () => {
@@ -1690,7 +1690,7 @@ export type ChannelProps<
   Me extends UnknownType = DefaultMessageType,
   Re extends UnknownType = DefaultReactionType,
   Us extends UnknownType = DefaultUserType,
-> = Partial<ChannelPropsWithContext<At, Ch, Co, Ev, Me, Re, Us>>;
+  > = Partial<ChannelPropsWithContext<At, Ch, Co, Ev, Me, Re, Us>>;
 
 /**
  *
@@ -1708,8 +1708,8 @@ export const Channel = <
   Me extends UnknownType = DefaultMessageType,
   Re extends UnknownType = DefaultReactionType,
   Us extends UnknownType = DefaultUserType,
->(
-  props: PropsWithChildren<ChannelProps<At, Ch, Co, Ev, Me, Re, Us>>,
+  >(
+    props: PropsWithChildren<ChannelProps<At, Ch, Co, Ev, Me, Re, Us>>,
 ) => {
   const { client } = useChatContext<At, Ch, Co, Ev, Me, Re, Us>();
   const { t } = useTranslationContext();
