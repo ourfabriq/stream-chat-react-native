@@ -164,10 +164,7 @@ export const renderText = <
     },
   };
 
-  const onLink = (url: string) =>
-    onLinkParams
-      ? onLinkParams(url)
-      : Linking.canOpenURL(url).then((canOpenUrl) => canOpenUrl && Linking.openURL(url));
+  const onLink = (url: string) => (onLinkParams ? onLinkParams(url) : Linking.openURL(url));
 
   const react: ReactNodeOutput = (node, output, { ...state }) => {
     const onPress = (event: GestureResponderEvent) => {
