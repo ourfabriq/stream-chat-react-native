@@ -69,6 +69,7 @@ export type ImageGalleryHeaderCustomComponent<Us extends UnknownType = DefaultUs
 export type ImageGalleryHeaderCustomComponentProps<Us extends UnknownType = DefaultUserType> = {
   centerElement?: ImageGalleryHeaderCustomComponent<Us>;
   CloseIcon?: React.ReactElement;
+  headerElement?: React.ReactElement;
   leftElement?: ImageGalleryHeaderCustomComponent<Us>;
   rightElement?: ImageGalleryHeaderCustomComponent<Us>;
 };
@@ -81,7 +82,16 @@ type Props<Us extends UnknownType = DefaultUserType> =
   };
 
 export const ImageGalleryHeader = <Us extends UnknownType = DefaultUserType>(props: Props<Us>) => {
-  const { centerElement, CloseIcon, leftElement, opacity, photo, rightElement, visible } = props;
+  const {
+    centerElement,
+    CloseIcon,
+    headerElement,
+    leftElement,
+    opacity,
+    photo,
+    rightElement,
+    visible,
+  } = props;
   const [height, setHeight] = useState(200);
   const {
     theme: {
@@ -134,6 +144,9 @@ export const ImageGalleryHeader = <Us extends UnknownType = DefaultUserType>(pro
     setOverlay('none');
     setBlurType(undefined);
   };
+
+  // Added a custom prop to render our own entire component, bypassing stream built in header
+  if (headerElement) return headerElement;
 
   return (
     <View
