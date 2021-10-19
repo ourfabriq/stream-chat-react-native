@@ -143,6 +143,7 @@ const areEqual = <
   const threadEqual =
     prevThread?.id === nextThread?.id &&
     prevThread?.text === nextThread?.text &&
+    prevThread?.latest_reactions === nextThread?.latest_reactions &&
     prevThread?.reply_count === nextThread?.reply_count;
   if (!threadEqual) return false;
 
