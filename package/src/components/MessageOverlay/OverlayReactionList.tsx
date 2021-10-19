@@ -379,10 +379,6 @@ const OverlayReactionListWithContext = <
         }}
         style={showScreenStyle}
       >
-        <Svg>
-          <AnimatedCircle animatedProps={animatedBigCircleProps} />
-          <AnimatedCircle animatedProps={animateSmallCircleProps} />
-        </Svg>
         <Animated.View
           onLayout={({
             nativeEvent: {

@@ -272,14 +272,6 @@ const ReactionListWithContext = <
     >
       {reactions.length ? (
         <Animated.View style={[StyleSheet.absoluteFill, animatedStyle]}>
-          <Svg>
-            <Circle cx={x1} cy={y1} fill={stroke} r={radius + strokeSize * 3} />
-            <Circle cx={x2} cy={y2} fill={stroke} r={radius * 2 + strokeSize * 3} />
-            <Circle cx={x1} cy={y1} fill={fill} r={radius + strokeSize} />
-            <Circle cx={x2} cy={y2} fill={fill} r={radius * 2 + strokeSize} />
-            <Circle cx={x1} cy={y1} fill={alignmentLeft ? fill : stroke} r={radius} />
-            <Circle cx={x2} cy={y2} fill={alignmentLeft ? fill : stroke} r={radius * 2} />
-          </Svg>
           <View
             style={[
               styles.reactionBubbleBackground,
@@ -295,11 +287,6 @@ const ReactionListWithContext = <
               reactionBubbleBackground,
             ]}
           />
-          <View style={[StyleSheet.absoluteFill]}>
-            <Svg>
-              <Circle cx={x2} cy={y2} fill={alignmentLeft ? fill : stroke} r={radius * 2} />
-            </Svg>
-          </View>
           <View
             style={[
               styles.reactionBubble,
