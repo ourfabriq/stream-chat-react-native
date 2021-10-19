@@ -42,7 +42,9 @@ const defaultMarkdownStyles: MarkdownStyle = {
     flex: 0,
   },
   mentions: {
-    fontWeight: '700',
+    fontFamily: 'IBMPlexSans-Bold',
+    fontSize: 16,
+    lineHeight: 24,
   },
   // unfortunately marginVertical doesn't override the defaults for these within the 3rd party lib
   paragraph: {
@@ -147,7 +149,6 @@ export const renderText = <
     },
     mentions: {
       ...defaultMarkdownStyles.mentions,
-      color: colors.accent_blue,
       ...markdownStyles?.mentions,
     },
     text: {
