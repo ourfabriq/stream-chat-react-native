@@ -14,7 +14,7 @@ export const ChannelListLoadingIndicator: React.FC = () => {
 
   return (
     <View
-      style={[styles.container, { backgroundColor: 'transparent' }, container]}
+      style={[styles.container, { backgroundColor: 'transparent' }]}
       testID='channel-list-loading-indicator'
     >
       {Array.from(Array(numberOfSkeletons)).map((_, index) => (
