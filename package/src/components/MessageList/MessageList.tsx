@@ -559,6 +559,8 @@ const MessageListWithContext = <
       showUnreadUnderlay && !isUnreadMessage(lastMessage, lastRead);
 
     if (message.type === 'system') {
+      if (!!(message as any).metadata?.reaction || !!(message as any).metadata?.isThread)
+        return <></>;
       return (
         <>
           <MessageSystem message={message} style={styles.messagePadding} />
@@ -664,7 +666,7 @@ const MessageListWithContext = <
     };
 
     // If onEndReached is in progress, better to wait for it to finish for smooth UX
-    if (onEndReachedInPromise.current) {
+    if (onEndReachedInPromise.current && onEndReachedInPromise.current.finally) {
       onEndReachedInPromise.current.finally(() => {
         onStartReachedInPromise.current = loadMoreRecent(limit).then(callback).catch(onError);
       });
@@ -701,7 +703,7 @@ const MessageListWithContext = <
     };
 
     // If onStartReached is in progress, better to wait for it to finish for smooth UX
-    if (onStartReachedInPromise.current) {
+    if (onStartReachedInPromise.current && onStartReachedInPromise.current.finally) {
       onStartReachedInPromise.current.finally(() => {
         onEndReachedInPromise.current = (threadList ? loadMoreThread() : loadMore())
           .then(callback)
@@ -898,7 +900,8 @@ const MessageListWithContext = <
   }
 
   return (
-    <View style={[styles.container, { backgroundColor: white_snow }, container]}>
+    // The white sometimes pokes through. iOS, enough messages to fill. Scroll hold it, the white will poke out.
+    <View style={[styles.container, container]}>
       <FlatList
         contentContainerStyle={[styles.contentContainer, contentContainer]}
         data={messageList}

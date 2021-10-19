@@ -227,13 +227,7 @@ export const getFileSizeDisplayText = (size?: number | string) => {
 
 export const goToURL = (url?: string) => {
   if (!url) return;
-  Linking.canOpenURL(url).then((supported) => {
-    if (supported) {
-      Linking.openURL(url);
-    } else {
-      console.log(`Don't know how to open URI: ${url}`);
-    }
-  });
+  Linking.openURL(url);
 };
 
 FileAttachment.displayName = 'FileAttachment{messageSimple{file}}';

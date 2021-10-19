@@ -59,7 +59,7 @@ export const SuggestionsList = <
     theme: {
       messageInput: {
         suggestions: {
-          container: { maxHeight },
+          container: { backgroundColor, maxHeight },
           item: itemStyle,
         },
       },
@@ -129,6 +129,7 @@ export const SuggestionsList = <
       ListHeaderComponent={SuggestionsTitle ? SuggestionsTitle : undefined}
       renderItem={renderItem}
       style={{
+        backgroundColor,
         maxHeight,
       }}
     />

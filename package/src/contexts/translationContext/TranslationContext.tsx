@@ -23,7 +23,7 @@ export type TranslationContextValue = {
 };
 
 export const TranslationContext = React.createContext<TranslationContextValue>({
-  t: (key) => key,
+  t: (key: any) => key,
   tDateTimeParser: (input) => Dayjs(input),
 });
 

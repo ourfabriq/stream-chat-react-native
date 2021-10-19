@@ -39,7 +39,7 @@ export const NetworkDownIndicator = () => {
 
   return (
     <View
-      style={[styles.errorNotification, { backgroundColor: `${grey}E6` }, errorNotification]}
+      style={[styles.errorNotification, { backgroundColor: '#F02A8E' }, errorNotification]}
       testID='error-notification'
     >
       <Text style={[styles.errorNotificationText, errorNotificationText]}>

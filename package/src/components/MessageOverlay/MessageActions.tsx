@@ -133,12 +133,6 @@ const MessageActionsWithContext = <
 ) => {
   const { alignment, messageActions, showScreen } = props;
 
-  const {
-    theme: {
-      colors: { white_snow },
-    },
-  } = useTheme();
-
   const height = useSharedValue(0);
   const width = useSharedValue(0);
 
@@ -169,7 +163,7 @@ const MessageActionsWithContext = <
         width.value = layout.width;
         height.value = layout.height;
       }}
-      style={[styles.container, { backgroundColor: white_snow }, showScreenStyle]}
+      style={[styles.container, { backgroundColor: '#3B0096' }, showScreenStyle]}
     >
       {messageActions?.map((messageAction, index) => (
         <MemoizedMessageAction

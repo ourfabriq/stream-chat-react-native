@@ -50,17 +50,17 @@ export const useAddedToChannelNotification = <
 
   useEffect(() => {
     const handleEvent = async (event: Event<At, Ch, Co, Ev, Me, Re, Us>) => {
+      // always run custom handler and default code
       if (typeof onAddedToChannel === 'function') {
         onAddedToChannel(setChannels, event);
-      } else {
-        if (event.channel?.id && event.channel?.type) {
-          const channel = await getChannel<At, Ch, Co, Ev, Me, Re, Us>({
-            client,
-            id: event.channel.id,
-            type: event.channel.type,
-          });
-          setChannels((channels) => uniqBy([channel, ...channels], 'cid'));
-        }
+      }
+      if (event.channel?.id && event.channel?.type) {
+        const channel = await getChannel<At, Ch, Co, Ev, Me, Re, Us>({
+          client,
+          id: event.channel.id,
+          type: event.channel.type,
+        });
+        setChannels((channels) => uniqBy([channel, ...channels], 'cid'));
       }
     };
 

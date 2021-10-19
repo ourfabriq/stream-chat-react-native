@@ -585,7 +585,8 @@ const MessageInputWithContext = <
               height:
                 (attachmentPickerBottomSheetHeight
                   ? attachmentPickerBottomSheetHeight + (attachmentSelectionBarHeight ?? 52)
-                  : 360) - bottomInset,
+                  : // we hacked the size of the icons, clean up some extra space
+                    345) - bottomInset,
             },
             attachmentSelectionBar,
           ]}

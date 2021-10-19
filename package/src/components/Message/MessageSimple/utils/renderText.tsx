@@ -42,7 +42,10 @@ const defaultMarkdownStyles: MarkdownStyle = {
     flex: 0,
   },
   mentions: {
-    fontWeight: '700',
+    color: '#F7F7FA',
+    fontFamily: 'IBMPlexSans-Bold',
+    fontSize: 16,
+    lineHeight: 24,
   },
   // unfortunately marginVertical doesn't override the defaults for these within the 3rd party lib
   paragraph: {
@@ -147,7 +150,6 @@ export const renderText = <
     },
     mentions: {
       ...defaultMarkdownStyles.mentions,
-      color: colors.accent_blue,
       ...markdownStyles?.mentions,
     },
     text: {
@@ -157,10 +159,7 @@ export const renderText = <
     },
   };
 
-  const onLink = (url: string) =>
-    onLinkParams
-      ? onLinkParams(url)
-      : Linking.canOpenURL(url).then((canOpenUrl) => canOpenUrl && Linking.openURL(url));
+  const onLink = (url: string) => (onLinkParams ? onLinkParams(url) : Linking.openURL(url));
 
   const react: ReactNodeOutput = (node, output, { ...state }) => {
     const onPress = (event: GestureResponderEvent) => {

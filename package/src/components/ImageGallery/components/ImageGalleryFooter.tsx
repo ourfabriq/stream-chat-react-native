@@ -152,7 +152,7 @@ export const ImageGalleryFooter = <Us extends UnknownType = DefaultUserType>(pro
           ) : (
             <TouchableOpacity disabled={shareMenuOpen} onPress={share}>
               <View style={[styles.leftContainer, leftContainer]}>
-                {ShareIcon ? ShareIcon : <ShareIconDefault />}
+                {ShareIcon ? ShareIcon : <ShareIconDefault pathFill='#04BFDA' />}
               </View>
             </TouchableOpacity>
           )}
@@ -173,7 +173,7 @@ export const ImageGalleryFooter = <Us extends UnknownType = DefaultUserType>(pro
           ) : (
             <TouchableOpacity onPress={openGridView}>
               <View style={[styles.rightContainer, rightContainer]}>
-                {GridIcon ? GridIcon : <GridIconDefault />}
+                {GridIcon ? GridIcon : <GridIconDefault pathFill='#04BFDA' />}
               </View>
             </TouchableOpacity>
           )}

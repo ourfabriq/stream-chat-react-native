@@ -100,13 +100,18 @@ const MessageTextContainerWithContext = <
     },
   } = theme;
 
+  // tried doing this with a custom component, gave in after two hours
+  const { isMyMessage } = useMessageContext();
+  const additionalStyles = isMyMessage
+    ? { backgroundColor: '#04BFDA' }
+    : { backgroundColor: '#3B0096' };
   if (!message.text) return null;
 
   const markdownStyles = { ...markdown, ...markdownStylesProp };
 
   return (
     <View
-      style={[styles.textContainer, textContainer, stylesProp.textContainer]}
+      style={[styles.textContainer, textContainer, stylesProp.textContainer, additionalStyles]}
       testID='message-text-container'
     >
       {MessageText ? (

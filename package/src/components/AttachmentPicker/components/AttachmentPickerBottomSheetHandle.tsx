@@ -2,8 +2,6 @@ import React from 'react';
 import { StyleSheet, View, ViewStyle } from 'react-native';
 import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 
-import { useTheme } from '../../../contexts/themeContext/ThemeContext';
-
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
@@ -20,20 +18,14 @@ const styles = StyleSheet.create({
 export const AttachmentPickerBottomSheetHandle: React.FC<{
   animatedIndex: Animated.SharedValue<number>;
 }> = ({ animatedIndex }) => {
-  const {
-    theme: {
-      colors: { black, white },
-    },
-  } = useTheme();
-
   const style = useAnimatedStyle<ViewStyle>(() => ({
     borderTopLeftRadius: animatedIndex.value > 0 ? 16 - animatedIndex.value * 16 : 16,
     borderTopRightRadius: animatedIndex.value > 0 ? 16 - animatedIndex.value * 16 : 16,
   }));
 
   return (
-    <Animated.View style={[styles.container, { backgroundColor: white }, style]}>
-      <View style={[styles.handle, { backgroundColor: `${black}1A` }]} />
+    <Animated.View style={[styles.container, { backgroundColor: '#18024C' }, style]}>
+      <View style={[styles.handle, { backgroundColor: '#3B0096' }]} />
       {/* ^ 1A = 10% opacity */}
     </Animated.View>
   );
