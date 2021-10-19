@@ -625,7 +625,7 @@ const ChannelWithContext = <
     };
   }, [channelId, messageId]);
 
-  const threadPropsExists = !!threadProps;
+  const threadId = threadProps?.id; // ch4620
   useEffect(() => {
     if (threadProps) {
       setThread(threadProps);
@@ -635,7 +635,7 @@ const ChannelWithContext = <
     } else {
       setThread(null);
     }
-  }, [threadPropsExists]);
+  }, [threadId]);
 
   const handleAppBackground = useCallback(() => {
     if (channel) {
