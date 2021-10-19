@@ -236,6 +236,7 @@ export const ReactionButton = <
       onHandlerStateChange={onTap}
     >
       <Animated.View
+        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         style={[index !== numberOfReactions - 1 ? styles.notLastReaction : {}, reaction, iconStyle]}
       >
         <Icon height={reactionSize} pathFill={grey} width={reactionSize} />
