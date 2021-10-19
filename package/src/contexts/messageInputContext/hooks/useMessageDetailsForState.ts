@@ -54,7 +54,7 @@ export const useMessageDetailsForState = <
 
   useEffect(() => {
     if (text !== initialTextValue) {
-      setShowMoreOptions(false);
+      setShowMoreOptions(true); // always show more option
     }
   }, [text]);
 
