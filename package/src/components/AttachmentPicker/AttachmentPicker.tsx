@@ -312,7 +312,8 @@ export const AttachmentPicker = React.forwardRef(
           : translucentStatusBar
           ? bottomBarHeight > statusBarHeight
             ? -bottomBarHeight + statusBarHeight
-            : bottomBarHeight > 0
+            : // ch46394 Eric was testing and found this to be backwards, for Pixel 2 XL and OnePlus
+            bottomBarHeight < 0
             ? -statusBarHeight
             : 0
           : bottomBarHeight > 0
