@@ -42,6 +42,7 @@ const defaultMarkdownStyles: MarkdownStyle = {
     flex: 0,
   },
   mentions: {
+    color: '#F7F7FA',
     fontFamily: 'IBMPlexSans-Bold',
     fontSize: 16,
     lineHeight: 24,
