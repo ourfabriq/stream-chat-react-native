@@ -470,6 +470,7 @@ export const Gallery = <
 
   const images = propImages || contextImages;
 
+  if (message?.attachments?.[0]?.type === 'moment') return null;
   if (!images.length) return null;
 
   const additionalTouchableProps = propAdditionalTouchableProps || contextAdditionalTouchableProps;

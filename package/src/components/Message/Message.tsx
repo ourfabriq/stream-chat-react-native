@@ -470,7 +470,7 @@ const MessageWithContext = <
           (acc, cur) => {
             if (cur.type === 'file') {
               acc.files.push(cur);
-              acc.other = []; // remove other attachments if a file exists
+              // acc.other = []; // remove other attachments if a file exists
             } else if (cur.type === 'image' && !cur.title_link && !cur.og_scrape_url) {
               /**
                * this next if is not combined with the above one for cases where we have
