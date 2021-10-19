@@ -70,7 +70,7 @@ export const ImageGridHandle: React.FC<Props> = (props) => {
         rightComponent({ closeGridView })
       ) : (
         <TouchableOpacity onPress={closeGridView}>
-          <Close style={styles.closeButton} />
+          <Close pathFill='#F7F7FA' style={styles.closeButton} />
         </TouchableOpacity>
       )}
     </View>
