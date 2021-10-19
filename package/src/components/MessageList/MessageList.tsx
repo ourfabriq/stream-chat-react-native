@@ -665,7 +665,7 @@ const MessageListWithContext = <
     };
 
     // If onEndReached is in progress, better to wait for it to finish for smooth UX
-    if (onEndReachedInPromise.current) {
+    if (onEndReachedInPromise.current && onEndReachedInPromise.current.finally) {
       onEndReachedInPromise.current.finally(() => {
         onStartReachedInPromise.current = loadMoreRecent(limit).then(callback).catch(onError);
       });
@@ -702,7 +702,7 @@ const MessageListWithContext = <
     };
 
     // If onStartReached is in progress, better to wait for it to finish for smooth UX
-    if (onStartReachedInPromise.current) {
+    if (onStartReachedInPromise.current && onStartReachedInPromise.current.finally) {
       onStartReachedInPromise.current.finally(() => {
         onEndReachedInPromise.current = (threadList ? loadMoreThread() : loadMore())
           .then(callback)
