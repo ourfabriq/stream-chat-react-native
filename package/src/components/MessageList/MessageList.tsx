@@ -559,7 +559,8 @@ const MessageListWithContext = <
       showUnreadUnderlay && !isUnreadMessage(lastMessage, lastRead);
 
     if (message.type === 'system') {
-      if (!!message.metadata?.reaction || !!message.metadata?.isThread) return <></>;
+      if (!!(message as any).metadata?.reaction || !!(message as any).metadata?.isThread)
+        return <></>;
       return (
         <>
           <MessageSystem message={message} style={styles.messagePadding} />

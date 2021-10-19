@@ -189,6 +189,7 @@ export class KeyboardCompatibleView extends React.Component<
     if (this._appStateSubscription?.remove) {
       this._appStateSubscription?.remove();
     } else {
+      // @ts-ignore
       AppState.removeEventListener('change', this._handleAppStateChange);
     }
     this.unsetKeyboardListeners();

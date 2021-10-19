@@ -803,7 +803,7 @@ const ChannelWithContext = <
       setHasMore(true);
       copyChannelState();
     } catch (err) {
-      setError(err);
+      setError(err as any);
       setLoading(false);
       setLastRead(new Date());
     }
@@ -947,7 +947,7 @@ const ChannelWithContext = <
       loadMoreThreadFinished(updatedHasMore, updatedThreadMessages);
     } catch (err) {
       console.warn('Thread loading request failed with error', err);
-      setError(err);
+      setError(err as any);
       setThreadLoadingMore(false);
       throw err;
     }
@@ -1049,7 +1049,7 @@ const ChannelWithContext = <
         setThreadMessages([...channel.state.threads[thread.id]]);
       }
     } catch (err) {
-      setError(err);
+      setError(err as any);
       setLoading(false);
     }
   };
@@ -1407,7 +1407,7 @@ const ChannelWithContext = <
       }
     } catch (err) {
       console.warn('Message pagination request failed with error', err);
-      setError(err);
+      setError(err as any);
       setLoadingMore(false);
       throw err;
     }
@@ -1442,7 +1442,7 @@ const ChannelWithContext = <
       }
     } catch (err) {
       console.warn('Message pagination request failed with error', err);
-      setError(err);
+      setError(err as any);
       setLoadingMoreRecent(false);
       throw err;
     }
@@ -1581,7 +1581,7 @@ const ChannelWithContext = <
         }
       } catch (err) {
         console.warn('Message pagination request failed with error', err);
-        setError(err);
+        setError(err as any);
         setThreadLoadingMore(false);
         throw err;
       }
