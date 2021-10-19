@@ -899,7 +899,8 @@ const MessageListWithContext = <
   }
 
   return (
-    <View style={[styles.container, { backgroundColor: white_snow }, container]}>
+    // The white sometimes pokes through. iOS, enough messages to fill. Scroll hold it, the white will poke out.
+    <View style={[styles.container, container]}>
       <FlatList
         contentContainerStyle={[styles.contentContainer, contentContainer]}
         data={messageList}
