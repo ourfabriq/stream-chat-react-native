@@ -3,7 +3,6 @@ import {
   Image,
   ImageProps,
   PixelRatio,
-  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -240,10 +239,6 @@ const GalleryWithContext = <
         >
           {column.map(({ height, url }, rowIndex) => {
             const defaultOnPress = () => {
-              if (Platform.OS === 'ios') {
-                // https://app.clubhouse.io/fabriq/story/46225/ios-app-freezing-on-non-dev-builds
-                return;
-              }
               // Added if-else to keep the logic readable, instead of DRY.
               // if - legacyImageViewerSwipeBehaviour is disabled
               // else - legacyImageViewerSwipeBehaviour is enabled
