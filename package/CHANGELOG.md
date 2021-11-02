@@ -1,5 +1,20 @@
 # Change Log
 
+### [3.9.2](https://github.com/GetStream/stream-chat-react-native/compare/v3.9.1...v3.9.2) (2021-11-02)
+
+
+### Bug Fixes
+
+* handling the errors when channel which is open gets deleted [CRNS-468] ([2598091](https://github.com/GetStream/stream-chat-react-native/commit/25980911841c8dc213a0b799036eca6e3638d588))
+* update message text when theme changes [CRNS-467] ([17ad925](https://github.com/GetStream/stream-chat-react-native/commit/17ad92519e328b0453f1c1d760ed5b3883978c71))
+
+### [3.9.1](https://github.com/GetStream/stream-chat-react-native/compare/v3.9.0...v3.9.1) (2021-10-22)
+
+
+### Bug Fixes
+
+* fixed react warnings - Can not perform a React state update on an unmounted component [CRNS-444] ([6240948](https://github.com/GetStream/stream-chat-react-native/commit/6240948d731ea8a6d98c3aa9c8896344392d1a40))
+
 ## [3.9.0](https://github.com/GetStream/stream-chat-react-native/compare/v3.8.3...v3.9.0) (2021-10-12)
 
 
