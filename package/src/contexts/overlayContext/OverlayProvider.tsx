@@ -73,8 +73,8 @@ export const OverlayProvider = <
   Me extends UnknownType = DefaultMessageType,
   Re extends UnknownType = DefaultReactionType,
   Us extends UnknownType = DefaultUserType,
->(
-  props: PropsWithChildren<OverlayProviderProps<At, Ch, Co, Ev, Me, Re, Us>>,
+  >(
+    props: PropsWithChildren<OverlayProviderProps<At, Ch, Co, Ev, Me, Re, Us>>,
 ) => {
   const {
     AttachmentPickerBottomSheetHandle = DefaultAttachmentPickerBottomSheetHandle,
@@ -106,7 +106,7 @@ export const OverlayProvider = <
     numberOfImageGalleryGridColumns,
     openPicker = (ref) => {
       if (ref.current) {
-        ref.current.snapTo(0);
+        ref.current.snapToIndex(0);
       } else {
         console.warn('bottom and top insets must be set for the image picker to work correctly');
       }

@@ -84,17 +84,17 @@ const GridImage = <Us extends DefaultUserType = DefaultUserType>({
         {avatarComponent
           ? avatarComponent({ item: restItem })
           : !!user?.image && (
-              <Avatar
-                containerStyle={[
-                  styles.avatarImageWrapper,
-                  { backgroundColor: white },
-                  gridAvatarWrapper,
-                ]}
-                image={user.image}
-                imageStyle={gridAvatar}
-                size={22}
-              />
-            )}
+            <Avatar
+              containerStyle={[
+                styles.avatarImageWrapper,
+                { backgroundColor: white },
+                gridAvatarWrapper,
+              ]}
+              image={user.image}
+              imageStyle={gridAvatar}
+              size={22}
+            />
+          )}
       </ImageBackground>
     </TouchableOpacity>
   );
@@ -113,9 +113,9 @@ type Props<Us extends UnknownType = DefaultUserType> = ImageGalleryGridImageComp
   setImage: React.Dispatch<
     React.SetStateAction<
       | {
-          messageId?: string | undefined;
-          url?: string | undefined;
-        }
+        messageId?: string | undefined;
+        url?: string | undefined;
+      }
       | undefined
     >
   >;
@@ -161,7 +161,7 @@ export const ImageGrid = <Us extends UnknownType = DefaultUserType>(props: Props
         { backgroundColor: white },
         contentContainer,
       ]}
-      data={imageGridItems}
+      data={imageGridItems as any}
       keyExtractor={(item, index) => `${item.uri}-${index}`}
       numColumns={numberOfImageGalleryGridColumns || 3}
       renderItem={renderItem}
