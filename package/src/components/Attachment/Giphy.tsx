@@ -197,7 +197,7 @@ const GiphyWithContext = <
             onPress={() => handleAction('image_action', 'shuffle')}
             style={[styles.shuffleButton, { borderColor: border }, shuffleButton]}
           >
-            <Left />
+            <Left fill={'#04BFDA'} />
           </TouchableOpacity>
           <Text style={[styles.title, { color: black }, titleStyle]}>{`"${title}"`}</Text>
           <TouchableOpacity
@@ -208,7 +208,7 @@ const GiphyWithContext = <
             }}
             style={[styles.shuffleButton, shuffleButton]}
           >
-            <Right />
+            <Right fill={'#04BFDA'} />
           </TouchableOpacity>
         </View>
         <View style={styles.row}>
