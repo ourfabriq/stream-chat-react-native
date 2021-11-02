@@ -11,7 +11,6 @@ import {
 } from '../../contexts/messagesContext/MessagesContext';
 import { useTheme } from '../../contexts/themeContext/ThemeContext';
 import { Left } from '../../icons/Left';
-import { Lightning } from '../../icons/Lightning';
 import { Right } from '../../icons/Right';
 import { makeImageCompatibleUrl } from '../../utils/utils';
 
@@ -64,7 +63,7 @@ const styles = StyleSheet.create({
   },
   giphyText: { fontSize: 11, fontWeight: '600' },
   margin: {
-    margin: 8,
+    margin: 0,
   },
   row: { flexDirection: 'row' },
   selectionContainer: {
@@ -273,7 +272,6 @@ const GiphyWithContext = <
         />
         <View style={[styles.giphyMask, giphyMask]}>
           <View style={[styles.giphyContainer, { backgroundColor: overlay_dark }, giphyContainer]}>
-            <Lightning height={16} pathFill={white} width={16} />
             <Text style={[styles.giphyText, { color: white }, giphyText]}>
               {type?.toUpperCase()}
             </Text>
