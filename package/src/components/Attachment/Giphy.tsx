@@ -184,7 +184,6 @@ const GiphyWithContext = <
         />
         <View style={[styles.giphyMask, giphyMask]}>
           <View style={[styles.giphyContainer, { backgroundColor: overlay_dark }, giphyContainer]}>
-            <Lightning height={16} pathFill={white} width={16} />
             <Text style={[styles.giphyText, { color: white }, giphyText]}>
               {type?.toUpperCase()}
             </Text>
@@ -197,7 +196,7 @@ const GiphyWithContext = <
             onPress={() => handleAction('image_action', 'shuffle')}
             style={[styles.shuffleButton, { borderColor: border }, shuffleButton]}
           >
-            <Left fill={'#04BFDA'} />
+            <Left pathFill={'#04BFDA'} />
           </TouchableOpacity>
           <Text style={[styles.title, { color: black }, titleStyle]}>{`"${title}"`}</Text>
           <TouchableOpacity
@@ -208,7 +207,7 @@ const GiphyWithContext = <
             }}
             style={[styles.shuffleButton, shuffleButton]}
           >
-            <Right fill={'#04BFDA'} />
+            <Right pathFill={'#04BFDA'} />
           </TouchableOpacity>
         </View>
         <View style={styles.row}>
