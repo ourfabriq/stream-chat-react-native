@@ -1164,7 +1164,7 @@ export const ImageGallery = <
           />
         )}
         handleHeight={imageGalleryGridHandleHeight ?? 40}
-        index={0}
+        index={-1}
         onChange={(index: number) => setCurrentBottomSheetIndex(index)}
         ref={bottomSheetRef}
         snapPoints={imageGalleryGridSnapPoints || snapPoints}
