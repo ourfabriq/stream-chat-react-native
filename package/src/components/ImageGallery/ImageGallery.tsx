@@ -180,7 +180,7 @@ export const ImageGallery = <
     : vh(100);
   const halfScreenHeight = screenHeight / 2;
   const quarterScreenHeight = screenHeight / 4;
-  const snapPoints = React.useMemo(() => [0, (screenHeight * 9) / 10], []);
+  const snapPoints = React.useMemo(() => [(screenHeight * 9) / 10], []);
 
   /**
    * BottomSheet ref
@@ -1047,7 +1047,7 @@ export const ImageGallery = <
   };
   const openGridView = () => {
     if (bottomSheetRef.current) {
-      bottomSheetRef.current.snapToIndex(1);
+      bottomSheetRef.current.snapToIndex(0);
     }
   };
 
@@ -1167,6 +1167,7 @@ export const ImageGallery = <
         onChange={(index: number) => setCurrentBottomSheetIndex(index)}
         ref={bottomSheetRef}
         snapPoints={imageGalleryGridSnapPoints || snapPoints}
+        enablePanDownToClose
       >
         <ImageGrid
           closeGridView={closeGridView}

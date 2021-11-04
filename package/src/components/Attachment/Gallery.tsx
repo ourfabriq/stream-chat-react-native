@@ -3,7 +3,6 @@ import {
   Image,
   ImageProps,
   PixelRatio,
-  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -100,7 +99,7 @@ export type GalleryPropsWithContext<
   Me extends UnknownType = DefaultMessageType,
   Re extends UnknownType = DefaultReactionType,
   Us extends UnknownType = DefaultUserType,
-> = Pick<ImageGalleryContextValue, 'setImage' | 'setImages'> &
+  > = Pick<ImageGalleryContextValue, 'setImage' | 'setImages'> &
   Pick<
     MessageContextValue<At, Ch, Co, Ev, Me, Re, Us>,
     | 'alignment'
@@ -144,8 +143,8 @@ const GalleryWithContext = <
   Me extends UnknownType = DefaultMessageType,
   Re extends UnknownType = DefaultReactionType,
   Us extends UnknownType = DefaultUserType,
->(
-  props: GalleryPropsWithContext<At, Ch, Co, Ev, Me, Re, Us>,
+  >(
+    props: GalleryPropsWithContext<At, Ch, Co, Ev, Me, Re, Us>,
 ) => {
   const {
     additionalTouchableProps,
@@ -240,10 +239,6 @@ const GalleryWithContext = <
         >
           {column.map(({ height, url }, rowIndex) => {
             const defaultOnPress = () => {
-              if (Platform.OS === 'ios') {
-                // https://app.clubhouse.io/fabriq/story/46225/ios-app-freezing-on-non-dev-builds
-                return;
-              }
               // Added if-else to keep the logic readable, instead of DRY.
               // if - legacyImageViewerSwipeBehaviour is disabled
               // else - legacyImageViewerSwipeBehaviour is enabled
@@ -311,24 +306,24 @@ const GalleryWithContext = <
                           (images.length === 2 && rowIndex === 0) ||
                           (images.length === 3 && colIndex === 0 && rowIndex === 0) ||
                           (images.length === 4 && colIndex === 0 && rowIndex === 1)) &&
-                        !messageText &&
-                        ((groupStyle !== 'left_bottom' && groupStyle !== 'left_single') ||
-                          (hasThreadReplies && !threadList))
+                          !messageText &&
+                          ((groupStyle !== 'left_bottom' && groupStyle !== 'left_single') ||
+                            (hasThreadReplies && !threadList))
                           ? 14
                           : 0,
                       borderBottomRightRadius:
                         (images.length === 1 ||
                           (colIndex === 1 && (images.length === 2 || rowIndex === 1))) &&
-                        !messageText &&
-                        ((groupStyle !== 'right_bottom' && groupStyle !== 'right_single') ||
-                          (hasThreadReplies && !threadList))
+                          !messageText &&
+                          ((groupStyle !== 'right_bottom' && groupStyle !== 'right_single') ||
+                            (hasThreadReplies && !threadList))
                           ? 14
                           : 0,
                       borderTopLeftRadius: colIndex === 0 && rowIndex === 0 ? 14 : 0,
                       borderTopRightRadius:
                         ((colIndex === 1 || images.length === 1) && rowIndex === 0) ||
-                        (images.length === 3 && colIndex === 0 && rowIndex === 1) ||
-                        (images.length === 2 && rowIndex === 1)
+                          (images.length === 3 && colIndex === 0 && rowIndex === 1) ||
+                          (images.length === 2 && rowIndex === 1)
                           ? 14
                           : 0,
                     },
@@ -367,9 +362,9 @@ const areEqual = <
   Me extends UnknownType = DefaultMessageType,
   Re extends UnknownType = DefaultReactionType,
   Us extends UnknownType = DefaultUserType,
->(
-  prevProps: GalleryPropsWithContext<At, Ch, Co, Ev, Me, Re, Us>,
-  nextProps: GalleryPropsWithContext<At, Ch, Co, Ev, Me, Re, Us>,
+  >(
+    prevProps: GalleryPropsWithContext<At, Ch, Co, Ev, Me, Re, Us>,
+    nextProps: GalleryPropsWithContext<At, Ch, Co, Ev, Me, Re, Us>,
 ) => {
   const {
     groupStyles: prevGroupStyles,
@@ -416,7 +411,7 @@ export type GalleryProps<
   Me extends UnknownType = DefaultMessageType,
   Re extends UnknownType = DefaultReactionType,
   Us extends UnknownType = DefaultUserType,
-> = Partial<GalleryPropsWithContext<At, Ch, Co, Ev, Me, Re, Us>>;
+  > = Partial<GalleryPropsWithContext<At, Ch, Co, Ev, Me, Re, Us>>;
 
 /**
  * UI component for card in attachments.
@@ -429,8 +424,8 @@ export const Gallery = <
   Me extends UnknownType = DefaultMessageType,
   Re extends UnknownType = DefaultReactionType,
   Us extends UnknownType = DefaultUserType,
->(
-  props: GalleryProps<At, Ch, Co, Ev, Me, Re, Us>,
+  >(
+    props: GalleryProps<At, Ch, Co, Ev, Me, Re, Us>,
 ) => {
   const {
     additionalTouchableProps: propAdditionalTouchableProps,
