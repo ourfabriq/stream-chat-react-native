@@ -232,15 +232,14 @@ export const OverlayProvider = <
                   OverlayReactions={OverlayReactions}
                   visible={overlay === 'message'}
                 />
-                {/* https://app.clubhouse.io/fabriq/story/46225/ios-app-freezing-on-non-dev-builds */}
-                {/* <ImageGallery<At, Ch, Co, Ev, Me, Re, Us>
+                <ImageGallery<At, Ch, Co, Ev, Me, Re, Us>
                   imageGalleryCustomComponents={imageGalleryCustomComponents}
                   imageGalleryGridHandleHeight={imageGalleryGridHandleHeight}
                   imageGalleryGridSnapPoints={imageGalleryGridSnapPoints}
                   numberOfImageGalleryGridColumns={numberOfImageGalleryGridColumns}
                   overlayOpacity={overlayOpacity}
                   visible={overlay === 'gallery'}
-                /> */}
+                />
                 <AttachmentPicker ref={bottomSheetRef} {...attachmentPickerProps} />
               </ThemeProvider>
             </ImageGalleryProvider>
