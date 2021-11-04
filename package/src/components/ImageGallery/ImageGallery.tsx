@@ -143,8 +143,8 @@ export const ImageGallery = <
   Me extends UnknownType = DefaultMessageType,
   Re extends UnknownType = DefaultReactionType,
   Us extends UnknownType = DefaultUserType,
-  >(
-    props: Props<Us>,
+>(
+  props: Props<Us>,
 ) => {
   const {
     imageGalleryCustomComponents,
@@ -173,14 +173,14 @@ export const ImageGallery = <
       ? 0
       : statusBarHeight
     : bottomBarHeight === statusBarHeight || bottomBarHeight < 0
-      ? -statusBarHeight
-      : 0;
+    ? -statusBarHeight
+    : 0;
   const screenHeight = isAndroid
     ? Dimensions.get('window').height + androidScreenHeightAdjustment
     : vh(100);
   const halfScreenHeight = screenHeight / 2;
   const quarterScreenHeight = screenHeight / 4;
-  const snapPoints = React.useMemo(() => [0, (screenHeight * 9) / 10], []);
+  const snapPoints = React.useMemo(() => [(screenHeight * 9) / 10], []);
 
   /**
    * BottomSheet ref
@@ -479,13 +479,13 @@ export const ImageGallery = <
               ? offsetScale.value * (1 - (1 / 3) * (translateY.value / screenHeight))
               : currentImageHeight * offsetScale.value > screenHeight &&
                 translateY.value > (currentImageHeight / 2) * offsetScale.value - halfScreenHeight
-                ? offsetScale.value *
+              ? offsetScale.value *
                 (1 -
                   (1 / 3) *
-                  ((translateY.value -
-                    ((currentImageHeight / 2) * offsetScale.value - halfScreenHeight)) /
-                    screenHeight))
-                : scale.value;
+                    ((translateY.value -
+                      ((currentImageHeight / 2) * offsetScale.value - halfScreenHeight)) /
+                      screenHeight))
+              : scale.value;
 
           overlayOpacity.value = localEvtScale;
         }
@@ -564,21 +564,21 @@ export const ImageGallery = <
             scale.value < 1
               ? withTiming(0)
               : translateX.value > halfScreenWidth * (scale.value - 1)
-                ? withTiming(halfScreenWidth * (scale.value - 1), {
+              ? withTiming(halfScreenWidth * (scale.value - 1), {
                   duration: 200,
                 })
-                : translateX.value < -halfScreenWidth * (scale.value - 1)
-                  ? withTiming(-halfScreenWidth * (scale.value - 1), {
-                    duration: 200,
-                  })
-                  : withDecay({
-                    clamp: [
-                      -halfScreenWidth * (scale.value - 1),
-                      halfScreenWidth * (scale.value - 1),
-                    ],
-                    deceleration: 0.99,
-                    velocity: -evt.velocityX,
-                  });
+              : translateX.value < -halfScreenWidth * (scale.value - 1)
+              ? withTiming(-halfScreenWidth * (scale.value - 1), {
+                  duration: 200,
+                })
+              : withDecay({
+                  clamp: [
+                    -halfScreenWidth * (scale.value - 1),
+                    halfScreenWidth * (scale.value - 1),
+                  ],
+                  deceleration: 0.99,
+                  velocity: -evt.velocityX,
+                });
 
           /**
            * When the pan is finished if the height is less than the screen
@@ -591,17 +591,17 @@ export const ImageGallery = <
             currentImageHeight * scale.value < screenHeight
               ? withTiming(0)
               : translateY.value > (currentImageHeight / 2) * scale.value - halfScreenHeight
-                ? withTiming((currentImageHeight / 2) * scale.value - halfScreenHeight)
-                : translateY.value < (-currentImageHeight / 2) * scale.value + halfScreenHeight
-                  ? withTiming((-currentImageHeight / 2) * scale.value + halfScreenHeight)
-                  : withDecay({
-                    clamp: [
-                      (-currentImageHeight / 2) * scale.value + halfScreenHeight,
-                      (currentImageHeight / 2) * scale.value - halfScreenHeight,
-                    ],
-                    deceleration: 0.99,
-                    velocity: evt.velocityY,
-                  });
+              ? withTiming((currentImageHeight / 2) * scale.value - halfScreenHeight)
+              : translateY.value < (-currentImageHeight / 2) * scale.value + halfScreenHeight
+              ? withTiming((-currentImageHeight / 2) * scale.value + halfScreenHeight)
+              : withDecay({
+                  clamp: [
+                    (-currentImageHeight / 2) * scale.value + halfScreenHeight,
+                    (currentImageHeight / 2) * scale.value - halfScreenHeight,
+                  ],
+                  deceleration: 0.99,
+                  velocity: evt.velocityY,
+                });
 
           resetTouchValues();
 
@@ -656,12 +656,12 @@ export const ImageGallery = <
             translateY.value =
               evt.velocityY > 1000
                 ? withDecay({
-                  velocity: evt.velocityY,
-                })
+                    velocity: evt.velocityY,
+                  })
                 : withTiming(halfScreenHeight + (currentImageHeight / 2) * scale.value, {
-                  duration: 200,
-                  easing: Easing.out(Easing.ease),
-                });
+                    duration: 200,
+                    easing: Easing.out(Easing.ease),
+                  });
             translateX.value = withDecay({
               velocity: -evt.velocityX,
             });
@@ -837,10 +837,10 @@ export const ImageGallery = <
             scale.value < 1
               ? withTiming(0)
               : translateX.value > halfScreenWidth * (scale.value - 1)
-                ? withTiming(halfScreenWidth * (scale.value - 1))
-                : translateX.value < -halfScreenWidth * (scale.value - 1)
-                  ? withTiming(-halfScreenWidth * (scale.value - 1))
-                  : translateX.value;
+              ? withTiming(halfScreenWidth * (scale.value - 1))
+              : translateX.value < -halfScreenWidth * (scale.value - 1)
+              ? withTiming(-halfScreenWidth * (scale.value - 1))
+              : translateX.value;
 
           /**
            * When the pinch is finished if the height is less than the screen
@@ -852,10 +852,10 @@ export const ImageGallery = <
             currentImageHeight * scale.value < screenHeight
               ? withTiming(0)
               : translateY.value > (currentImageHeight / 2) * scale.value - screenHeight / 2
-                ? withTiming((currentImageHeight / 2) * scale.value - screenHeight / 2)
-                : translateY.value < (-currentImageHeight / 2) * scale.value + screenHeight / 2
-                  ? withTiming((-currentImageHeight / 2) * scale.value + screenHeight / 2)
-                  : translateY.value;
+              ? withTiming((currentImageHeight / 2) * scale.value - screenHeight / 2)
+              : translateY.value < (-currentImageHeight / 2) * scale.value + screenHeight / 2
+              ? withTiming((-currentImageHeight / 2) * scale.value + screenHeight / 2)
+              : translateY.value;
 
           /**
            * If the scale has been reduced below one, i.e. zoomed out, translate
@@ -988,10 +988,10 @@ export const ImageGallery = <
         ? 1 - translateY.value / quarterScreenHeight
         : currentImageHeight * scale.value > screenHeight &&
           translateY.value > (currentImageHeight / 2) * scale.value - halfScreenHeight
-          ? 1 -
+        ? 1 -
           (translateY.value - ((currentImageHeight / 2) * scale.value - halfScreenHeight)) /
-          quarterScreenHeight
-          : 1,
+            quarterScreenHeight
+        : 1,
     [currentImageHeight],
   );
 
@@ -1047,7 +1047,7 @@ export const ImageGallery = <
   };
   const openGridView = () => {
     if (bottomSheetRef.current) {
-      bottomSheetRef.current.snapToIndex(1);
+      bottomSheetRef.current.snapToIndex(0);
     }
   };
 
@@ -1156,6 +1156,7 @@ export const ImageGallery = <
       <BottomSheet
         animatedIndex={animatedBottomSheetIndex}
         containerHeight={fullScreenHeight}
+        enablePanDownToClose
         handleComponent={() => (
           <ImageGridHandle
             closeGridView={closeGridView}
