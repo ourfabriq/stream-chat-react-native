@@ -142,6 +142,7 @@ type MessageInputPropsWithContext<
     | 'sending'
     | 'sendMessageAsync'
     | 'setShowMoreOptions'
+    | 'setTextInputFocused'
     | 'setGiphyActive'
     | 'showMoreOptions'
     | 'ShowThreadMessageInChannelButton'
@@ -204,7 +205,6 @@ const MessageInputWithContext = <
     suggestions,
     suggestionsTitle,
     t,
-    textInputFocused,
     thread,
     threadList,
     uploadNewImage,
@@ -439,8 +439,6 @@ const MessageInputWithContext = <
 
   const additionalTextInputContainerProps = {
     editable: disabled ? false : undefined,
-    onBlur,
-    onFocus,
     ...additionalTextInputProps,
   };
 
@@ -549,7 +547,11 @@ const MessageInputWithContext = <
                     </View>
                   )}
                   <AutoCompleteInput<At, Ch, Co, Ev, Me, Re, Us>
-                    additionalTextInputProps={additionalTextInputProps}
+                    additionalTextInputProps={{
+                      onBlur,
+                      onFocus,
+                      ...additionalTextInputProps,
+                    }}
                   />
                   {giphyActive && (
                     <TouchableOpacity
@@ -800,7 +802,6 @@ export const MessageInput = <
     setTextInputFocused,
     showMoreOptions,
     ShowThreadMessageInChannelButton,
-    textInputFocused,
     uploadNewImage,
   } = useMessageInputContext<At, Ch, Co, Ev, Me, Re, Us>();
 

@@ -54,6 +54,7 @@ export type InputButtonsWithContextProps<
   | 'setShowMoreOptions'
   | 'showMoreOptions'
   | 'text'
+  | 'textInputFocused'
   | 'toggleAttachmentPicker'
   | 'uploadsEnabled'
 >;
@@ -139,6 +140,7 @@ const areEqual = <
     selectedPicker: prevSelectedPicker,
     showMoreOptions: prevShowMoreOptions,
     text: prevText,
+    textInputFocused: prevTextInputFocused,
     uploadsEnabled: prevUploadsEnabled,
   } = prevProps;
 
@@ -150,6 +152,7 @@ const areEqual = <
     selectedPicker: nextSelectedPicker,
     showMoreOptions: nextShowMoreOptions,
     text: nextText,
+    textInputFocused: nextTextInputFocused,
     uploadsEnabled: nextUploadsEnabled,
   } = nextProps;
 
@@ -181,6 +184,10 @@ const areEqual = <
   }
 
   if (prevGiphyActive !== nextGiphyActive) {
+    return false;
+  }
+
+  if (prevTextInputFocused !== nextTextInputFocused) {
     return false;
   }
 
