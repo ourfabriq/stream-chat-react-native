@@ -81,6 +81,7 @@ export const InputButtonsWithContext = <
     setShowMoreOptions,
     showMoreOptions,
     text,
+    textInputFocused,
     toggleAttachmentPicker,
     uploadsEnabled,
   } = props;
@@ -92,6 +93,10 @@ export const InputButtonsWithContext = <
   } = useTheme();
 
   if (giphyActive) {
+    return null;
+  }
+
+  if (textInputFocused) {
     return null;
   }
 
@@ -211,6 +216,7 @@ export const InputButtons = <
     setShowMoreOptions,
     showMoreOptions,
     text,
+    textInputFocused,
     toggleAttachmentPicker,
     uploadsEnabled,
   } = useMessageInputContext<At, Ch, Co, Ev, Me, Re, Us>();
@@ -230,6 +236,7 @@ export const InputButtons = <
         setShowMoreOptions,
         showMoreOptions,
         text,
+        textInputFocused,
         toggleAttachmentPicker,
         uploadsEnabled,
       }}

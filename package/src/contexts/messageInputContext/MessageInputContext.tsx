@@ -437,6 +437,7 @@ export const MessageInputProvider = <
     };
   }>({});
   const [giphyActive, setGiphyActive] = useState(false);
+  const [textInputFocused, setTextInputFocused] = useState(false);
   const [sendThreadMessageInChannel, setSendThreadMessageInChannel] = useState(false);
   const { editing, hasFilePicker, hasImagePicker, initialValue, maxNumberOfFiles } = value;
   const {
@@ -1048,8 +1049,10 @@ export const MessageInputProvider = <
     setSendThreadMessageInChannel,
     setShowMoreOptions,
     setText,
+    setTextInputFocused,
     showMoreOptions,
     text,
+    textInputFocused,
     thread,
     toggleAttachmentPicker,
     triggerSettings,

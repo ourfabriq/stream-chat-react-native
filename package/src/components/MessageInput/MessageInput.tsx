@@ -199,10 +199,12 @@ const MessageInputWithContext = <
     sendMessageAsync,
     setGiphyActive,
     setShowMoreOptions,
+    setTextInputFocused,
     ShowThreadMessageInChannelButton,
     suggestions,
     suggestionsTitle,
     t,
+    textInputFocused,
     thread,
     threadList,
     uploadNewImage,
@@ -427,8 +429,18 @@ const MessageInputWithContext = <
     return result;
   };
 
+  const onFocus = () => {
+    setTextInputFocused(true);
+  };
+
+  const onBlur = () => {
+    setTextInputFocused(false);
+  };
+
   const additionalTextInputContainerProps = {
     editable: disabled ? false : undefined,
+    onBlur,
+    onFocus,
     ...additionalTextInputProps,
   };
 
@@ -785,8 +797,10 @@ export const MessageInput = <
     sendMessageAsync,
     setGiphyActive,
     setShowMoreOptions,
+    setTextInputFocused,
     showMoreOptions,
     ShowThreadMessageInChannelButton,
+    textInputFocused,
     uploadNewImage,
   } = useMessageInputContext<At, Ch, Co, Ev, Me, Re, Us>();
 
@@ -833,11 +847,13 @@ export const MessageInput = <
         sendMessageAsync,
         setGiphyActive,
         setShowMoreOptions,
+        setTextInputFocused,
         showMoreOptions,
         ShowThreadMessageInChannelButton,
         suggestions,
         suggestionsTitle,
         t,
+        textInputFocused,
         thread,
         uploadNewImage,
         watchers,
