@@ -54,6 +54,7 @@ export type InputButtonsWithContextProps<
   | 'setShowMoreOptions'
   | 'showMoreOptions'
   | 'text'
+  | 'textInputFocused'
   | 'toggleAttachmentPicker'
   | 'uploadsEnabled'
 >;
@@ -81,6 +82,7 @@ export const InputButtonsWithContext = <
     setShowMoreOptions,
     showMoreOptions,
     text,
+    textInputFocused,
     toggleAttachmentPicker,
     uploadsEnabled,
   } = props;
@@ -92,6 +94,10 @@ export const InputButtonsWithContext = <
   } = useTheme();
 
   if (giphyActive) {
+    return null;
+  }
+
+  if (textInputFocused) {
     return null;
   }
 
@@ -134,6 +140,7 @@ const areEqual = <
     selectedPicker: prevSelectedPicker,
     showMoreOptions: prevShowMoreOptions,
     text: prevText,
+    textInputFocused: prevTextInputFocused,
     uploadsEnabled: prevUploadsEnabled,
   } = prevProps;
 
@@ -145,6 +152,7 @@ const areEqual = <
     selectedPicker: nextSelectedPicker,
     showMoreOptions: nextShowMoreOptions,
     text: nextText,
+    textInputFocused: nextTextInputFocused,
     uploadsEnabled: nextUploadsEnabled,
   } = nextProps;
 
@@ -176,6 +184,10 @@ const areEqual = <
   }
 
   if (prevGiphyActive !== nextGiphyActive) {
+    return false;
+  }
+
+  if (prevTextInputFocused !== nextTextInputFocused) {
     return false;
   }
 
@@ -211,6 +223,7 @@ export const InputButtons = <
     setShowMoreOptions,
     showMoreOptions,
     text,
+    textInputFocused,
     toggleAttachmentPicker,
     uploadsEnabled,
   } = useMessageInputContext<At, Ch, Co, Ev, Me, Re, Us>();
@@ -230,6 +243,7 @@ export const InputButtons = <
         setShowMoreOptions,
         showMoreOptions,
         text,
+        textInputFocused,
         toggleAttachmentPicker,
         uploadsEnabled,
       }}

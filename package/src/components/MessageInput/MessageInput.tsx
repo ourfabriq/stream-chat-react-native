@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { LayoutAnimation, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { AttachmentSelectionBar } from '../AttachmentPicker/components/AttachmentSelectionBar';
 import { AutoCompleteInput } from '../AutoCompleteInput/AutoCompleteInput';
@@ -142,6 +142,7 @@ type MessageInputPropsWithContext<
     | 'sending'
     | 'sendMessageAsync'
     | 'setShowMoreOptions'
+    | 'setTextInputFocused'
     | 'setGiphyActive'
     | 'showMoreOptions'
     | 'ShowThreadMessageInChannelButton'
@@ -199,6 +200,7 @@ const MessageInputWithContext = <
     sendMessageAsync,
     setGiphyActive,
     setShowMoreOptions,
+    setTextInputFocused,
     ShowThreadMessageInChannelButton,
     suggestions,
     suggestionsTitle,
@@ -427,6 +429,16 @@ const MessageInputWithContext = <
     return result;
   };
 
+  const onFocus = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setTextInputFocused(true);
+  };
+
+  const onBlur = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setTextInputFocused(false);
+  };
+
   const additionalTextInputContainerProps = {
     editable: disabled ? false : undefined,
     ...additionalTextInputProps,
@@ -537,7 +549,11 @@ const MessageInputWithContext = <
                     </View>
                   )}
                   <AutoCompleteInput<At, Ch, Co, Ev, Me, Re, Us>
-                    additionalTextInputProps={additionalTextInputProps}
+                    additionalTextInputProps={{
+                      onBlur,
+                      onFocus,
+                      ...additionalTextInputProps,
+                    }}
                   />
                   {giphyActive && (
                     <TouchableOpacity
@@ -585,8 +601,7 @@ const MessageInputWithContext = <
               height:
                 (attachmentPickerBottomSheetHeight
                   ? attachmentPickerBottomSheetHeight + (attachmentSelectionBarHeight ?? 52)
-                  : // we hacked the size of the icons, clean up some extra space
-                    345) - bottomInset,
+                  : 360) - bottomInset,
             },
             attachmentSelectionBar,
           ]}
@@ -786,6 +801,7 @@ export const MessageInput = <
     sendMessageAsync,
     setGiphyActive,
     setShowMoreOptions,
+    setTextInputFocused,
     showMoreOptions,
     ShowThreadMessageInChannelButton,
     uploadNewImage,
@@ -834,6 +850,7 @@ export const MessageInput = <
         sendMessageAsync,
         setGiphyActive,
         setShowMoreOptions,
+        setTextInputFocused,
         showMoreOptions,
         ShowThreadMessageInChannelButton,
         suggestions,
