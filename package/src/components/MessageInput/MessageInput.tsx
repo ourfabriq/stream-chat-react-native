@@ -854,7 +854,6 @@ export const MessageInput = <
         suggestions,
         suggestionsTitle,
         t,
-        textInputFocused,
         thread,
         uploadNewImage,
         watchers,

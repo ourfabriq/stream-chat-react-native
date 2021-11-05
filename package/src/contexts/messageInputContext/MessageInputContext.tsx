@@ -93,134 +93,134 @@ export type LocalMessageInputContext<
   At extends UnknownType = DefaultAttachmentType,
   Co extends string = DefaultCommandType,
   Us extends UnknownType = DefaultUserType,
-  > = {
-    appendText: (newText: string) => void;
-    asyncIds: string[];
-    asyncUploads: {
+> = {
+  appendText: (newText: string) => void;
+  asyncIds: string[];
+  asyncUploads: {
+    [key: string]: {
+      state: string;
+      url: string;
+    };
+  };
+  closeAttachmentPicker: () => void;
+  /**
+   * An array of file objects which are set for upload. It has the following structure:
+   *
+   * ```json
+   *  [
+   *    {
+   *      "file": // File object,
+   *      "id": "randomly_generated_temp_id_1",
+   *      "state": "uploading" // or "finished",
+   *      "url": "https://url1.com",
+   *    },
+   *    {
+   *      "file": // File object,
+   *      "id": "randomly_generated_temp_id_2",
+   *      "state": "uploading" // or "finished",
+   *      "url": "https://url1.com",
+   *    },
+   *  ]
+   * ```
+   *
+   */
+  fileUploads: FileUpload[];
+  giphyActive: boolean;
+  /**
+   * An array of image objects which are set for upload. It has the following structure:
+   *
+   * ```json
+   *  [
+   *    {
+   *      "file": // File object,
+   *      "id": "randomly_generated_temp_id_1",
+   *      "state": "uploading" // or "finished",
+   *    },
+   *    {
+   *      "file": // File object,
+   *      "id": "randomly_generated_temp_id_2",
+   *      "state": "uploading" // or "finished",
+   *    },
+   *  ]
+   * ```
+   *
+   */
+  imageUploads: ImageUpload[];
+  inputBoxRef: React.MutableRefObject<TextInput | null>;
+  isValidMessage: () => boolean;
+  mentionedUsers: string[];
+  numberOfUploads: number;
+  onChange: (newText: string) => void;
+  onSelectItem: (item: UserResponse<Us>) => void;
+  openAttachmentPicker: () => void;
+  openCommandsPicker: () => void;
+  openFilePicker: () => void;
+  openMentionsPicker: () => void;
+  pickFile: () => Promise<void>;
+  /**
+   * Function for removing a file from the upload preview
+   *
+   * @param id string ID of file in `fileUploads` object in state of MessageInput
+   */
+  removeFile: (id: string) => void;
+  /**
+   * Function for removing an image from the upload preview
+   *
+   * @param id string ID of image in `imageUploads` object in state of MessageInput
+   */
+  removeImage: (id: string) => void;
+  resetInput: (pendingAttachments?: Attachment<At>[]) => void;
+  selectedPicker: string | undefined;
+  sending: React.MutableRefObject<boolean>;
+  sendMessage: () => Promise<void>;
+  sendMessageAsync: (id: string) => void;
+  sendThreadMessageInChannel: boolean;
+  setAsyncIds: React.Dispatch<React.SetStateAction<string[]>>;
+  setAsyncUploads: React.Dispatch<
+    React.SetStateAction<{
       [key: string]: {
         state: string;
         url: string;
       };
-    };
-    closeAttachmentPicker: () => void;
-    /**
-     * An array of file objects which are set for upload. It has the following structure:
-     *
-     * ```json
-     *  [
-     *    {
-     *      "file": // File object,
-     *      "id": "randomly_generated_temp_id_1",
-     *      "state": "uploading" // or "finished",
-     *      "url": "https://url1.com",
-     *    },
-     *    {
-     *      "file": // File object,
-     *      "id": "randomly_generated_temp_id_2",
-     *      "state": "uploading" // or "finished",
-     *      "url": "https://url1.com",
-     *    },
-     *  ]
-     * ```
-     *
-     */
-    fileUploads: FileUpload[];
-    giphyActive: boolean;
-    /**
-     * An array of image objects which are set for upload. It has the following structure:
-     *
-     * ```json
-     *  [
-     *    {
-     *      "file": // File object,
-     *      "id": "randomly_generated_temp_id_1",
-     *      "state": "uploading" // or "finished",
-     *    },
-     *    {
-     *      "file": // File object,
-     *      "id": "randomly_generated_temp_id_2",
-     *      "state": "uploading" // or "finished",
-     *    },
-     *  ]
-     * ```
-     *
-     */
-    imageUploads: ImageUpload[];
-    inputBoxRef: React.MutableRefObject<TextInput | null>;
-    isValidMessage: () => boolean;
-    mentionedUsers: string[];
-    numberOfUploads: number;
-    onChange: (newText: string) => void;
-    onSelectItem: (item: UserResponse<Us>) => void;
-    openAttachmentPicker: () => void;
-    openCommandsPicker: () => void;
-    openFilePicker: () => void;
-    openMentionsPicker: () => void;
-    pickFile: () => Promise<void>;
-    /**
-     * Function for removing a file from the upload preview
-     *
-     * @param id string ID of file in `fileUploads` object in state of MessageInput
-     */
-    removeFile: (id: string) => void;
-    /**
-     * Function for removing an image from the upload preview
-     *
-     * @param id string ID of image in `imageUploads` object in state of MessageInput
-     */
-    removeImage: (id: string) => void;
-    resetInput: (pendingAttachments?: Attachment<At>[]) => void;
-    selectedPicker: string | undefined;
-    sending: React.MutableRefObject<boolean>;
-    sendMessage: () => Promise<void>;
-    sendMessageAsync: (id: string) => void;
-    sendThreadMessageInChannel: boolean;
-    setAsyncIds: React.Dispatch<React.SetStateAction<string[]>>;
-    setAsyncUploads: React.Dispatch<
-      React.SetStateAction<{
-        [key: string]: {
-          state: string;
-          url: string;
-        };
-      }>
-    >;
-    setFileUploads: React.Dispatch<React.SetStateAction<FileUpload[]>>;
-    setGiphyActive: React.Dispatch<React.SetStateAction<boolean>>;
-    setImageUploads: React.Dispatch<React.SetStateAction<ImageUpload[]>>;
-    /**
-     * Ref callback to set reference on input box
-     */
-    setInputBoxRef: (ref: TextInput | null) => void;
-    setMentionedUsers: React.Dispatch<React.SetStateAction<string[]>>;
-    setNumberOfUploads: React.Dispatch<React.SetStateAction<number>>;
-    setSendThreadMessageInChannel: React.Dispatch<React.SetStateAction<boolean>>;
-    setShowMoreOptions: React.Dispatch<React.SetStateAction<boolean>>;
-    setText: React.Dispatch<React.SetStateAction<string>>;
-    setTextInputFocused: React.Dispatch<React.SetStateAction<boolean>>;
-    showMoreOptions: boolean;
-    /**
-     * Text value of the TextInput
-     */
-    text: string;
-    textInputFocused: boolean;
-    toggleAttachmentPicker: () => void;
-    /**
-     * Mapping of input triggers to the outputs to be displayed by the AutoCompleteInput
-     */
-    triggerSettings: TriggerSettings<Co, Us>;
-    updateMessage: () => Promise<void>;
-    /** Function for attempting to upload a file */
-    uploadFile: ({ newFile }: { newFile: FileUpload }) => Promise<void>;
-    /** Function for attempting to upload an image */
-    uploadImage: ({ newImage }: { newImage: ImageUpload }) => Promise<void>;
-    uploadNewFile: (file: {
-      name: string;
-      size?: number | string;
-      type?: string;
-      uri?: string;
-    }) => Promise<void>;
-    uploadNewImage: (image: Partial<Asset>) => Promise<void>;
-  };
+    }>
+  >;
+  setFileUploads: React.Dispatch<React.SetStateAction<FileUpload[]>>;
+  setGiphyActive: React.Dispatch<React.SetStateAction<boolean>>;
+  setImageUploads: React.Dispatch<React.SetStateAction<ImageUpload[]>>;
+  /**
+   * Ref callback to set reference on input box
+   */
+  setInputBoxRef: (ref: TextInput | null) => void;
+  setMentionedUsers: React.Dispatch<React.SetStateAction<string[]>>;
+  setNumberOfUploads: React.Dispatch<React.SetStateAction<number>>;
+  setSendThreadMessageInChannel: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowMoreOptions: React.Dispatch<React.SetStateAction<boolean>>;
+  setText: React.Dispatch<React.SetStateAction<string>>;
+  setTextInputFocused: React.Dispatch<React.SetStateAction<boolean>>;
+  showMoreOptions: boolean;
+  /**
+   * Text value of the TextInput
+   */
+  text: string;
+  textInputFocused: boolean;
+  toggleAttachmentPicker: () => void;
+  /**
+   * Mapping of input triggers to the outputs to be displayed by the AutoCompleteInput
+   */
+  triggerSettings: TriggerSettings<Co, Us>;
+  updateMessage: () => Promise<void>;
+  /** Function for attempting to upload a file */
+  uploadFile: ({ newFile }: { newFile: FileUpload }) => Promise<void>;
+  /** Function for attempting to upload an image */
+  uploadImage: ({ newImage }: { newImage: ImageUpload }) => Promise<void>;
+  uploadNewFile: (file: {
+    name: string;
+    size?: number | string;
+    type?: string;
+    uri?: string;
+  }) => Promise<void>;
+  uploadNewImage: (image: Partial<Asset>) => Promise<void>;
+};
 
 export type InputMessageInputContextValue<
   At extends UnknownType = DefaultAttachmentType,
@@ -230,169 +230,169 @@ export type InputMessageInputContextValue<
   Me extends UnknownType = DefaultMessageType,
   Re extends UnknownType = DefaultReactionType,
   Us extends UnknownType = DefaultUserType,
-  > = {
-    /**
-     * Custom UI component for attach button.
-     *
-     * Defaults to and accepts same props as: [AttachButton](https://getstream.github.io/stream-chat-react-native/v3/#attachbutton)
-     */
-    AttachButton: React.ComponentType<AttachButtonProps<At, Ch, Co, Ev, Me, Re, Us>>;
-    clearEditingState: () => void;
-    clearQuotedMessageState: () => void;
-    /**
-     * Custom UI component for commands button.
-     *
-     * Defaults to and accepts same props as: [CommandsButton](https://getstream.github.io/stream-chat-react-native/v3/#commandsbutton)
-     */
-    CommandsButton: React.ComponentType<CommandsButtonProps<At, Ch, Co, Ev, Me, Re, Us>>;
-    editing: boolean | MessageType<At, Ch, Co, Ev, Me, Re, Us>;
-    editMessage: StreamChat<At, Ch, Co, Ev, Me, Re, Us>['updateMessage'];
-    /**
-     * Custom UI component for FileUploadPreview.
-     * Defaults to and accepts same props as: https://github.com/GetStream/stream-chat-react-native/blob/master/src/components/MessageInput/FileUploadPreview.tsx
-     */
-    FileUploadPreview: React.ComponentType<FileUploadPreviewProps<At, Ch, Co, Ev, Me, Re, Us>>;
-    /** When false, CommandsButton will be hidden */
-    hasCommands: boolean;
-    /** When false, FileSelectorIcon will be hidden */
-    hasFilePicker: boolean;
-    /** When false, ImageSelectorIcon will be hidden */
-    hasImagePicker: boolean;
-    /**
-     * Custom UI component for ImageUploadPreview.
-     * Defaults to and accepts same props as: https://github.com/GetStream/stream-chat-react-native/blob/master/src/components/MessageInput/ImageUploadPreview.tsx
-     */
-    ImageUploadPreview: React.ComponentType<ImageUploadPreviewProps<At, Ch, Co, Ev, Me, Re, Us>>;
-    /** Limit on allowed number of files to attach at a time. */
-    maxNumberOfFiles: number;
-    /**
-     * Custom UI component for more options button.
-     *
-     * Defaults to and accepts same props as: [MoreOptionsButton](https://getstream.github.io/stream-chat-react-native/v3/#moreoptionsbutton)
-     */
-    MoreOptionsButton: React.ComponentType<MoreOptionsButtonProps<At, Ch, Co, Ev, Me, Re, Us>>;
-    /** Limit on the number of lines in the text input before scrolling */
-    numberOfLines: number;
-    quotedMessage: boolean | MessageType<At, Ch, Co, Ev, Me, Re, Us>;
-    /**
-     * Custom UI component for send button.
-     *
-     * Defaults to and accepts same props as: [SendButton](https://getstream.github.io/stream-chat-react-native/v3/#sendbutton)
-     */
-    SendButton: React.ComponentType<SendButtonProps<At, Ch, Co, Ev, Me, Re, Us>>;
-    sendImageAsync: boolean;
-    sendMessage: (message: Partial<StreamMessage<At, Me, Us>>) => Promise<void>;
-    setQuotedMessageState: (message: MessageType<At, Ch, Co, Ev, Me, Re, Us>) => void;
-    /**
-     * Custom UI component to render checkbox with text ("Also send to channel") in Thread's input box.
-     * When ticked, message will also be sent in parent channel.
-     */
-    ShowThreadMessageInChannelButton: React.ComponentType<{
-      threadList?: boolean;
-    }>;
-    /**
-     * Custom UI component to render upload progress indicator on attachment preview.
-     *
-     * **Default** [UploadProgressIndicator](https://github.com/GetStream/stream-chat-react-native/blob/master/src/components/MessageInput/UploadProgressIndicator.tsx)
-     */
-    UploadProgressIndicator: React.ComponentType<UploadProgressIndicatorProps>;
-    /**
-     * Additional props for underlying TextInput component. These props will be forwarded as it is to TextInput component.
-     *
-     * @see See https://reactnative.dev/docs/textinput#reference
-     */
-    additionalTextInputProps?: TextInputProps;
-    /** Max number of suggestions to display in autocomplete list. Defaults to 10. */
-    autoCompleteSuggestionsLimit?: number;
-    /**
-     * Mapping of input triggers to the outputs to be displayed by the AutoCompleteInput
-     */
-    autoCompleteTriggerSettings?: (
-      settings: ACITriggerSettingsParams<At, Ch, Co, Ev, Me, Re, Us>,
-    ) => TriggerSettings<Co, Us>;
-    /**
-     * Compress image with quality (from 0 to 1, where 1 is best quality).
-     * On iOS, values larger than 0.8 don't produce a noticeable quality increase in most images,
-     * while a value of 0.8 will reduce the file size by about half or less compared to a value of 1.
-     * Image picker defaults to 0.8 for iOS and 1 for Android
-     */
-    compressImageQuality?: number;
-    /**
-     * Override file upload request
-     *
-     * @param file    File object - { uri: '', name: '' }
-     * @param channel Current channel object
-     *
-     * @overrideType Function
-     */
-    doDocUploadRequest?: (
-      file: {
-        name: string;
-        size?: string | number;
-        type?: string;
-        uri?: string;
-      },
-      channel: ChannelContextValue<At, Ch, Co, Ev, Me, Re, Us>['channel'],
-    ) => Promise<SendFileAPIResponse>;
-    /**
-     * Override image upload request
-     *
-     * @param file    File object - { uri: '' }
-     * @param channel Current channel object
-     *
-     * @overrideType Function
-     */
-    doImageUploadRequest?: (
-      file: {
-        name?: string;
-        uri?: string;
-      },
-      channel: ChannelContextValue<At, Ch, Co, Ev, Me, Re, Us>['channel'],
-    ) => Promise<SendFileAPIResponse>;
-    /** Initial value to set on input */
-    initialValue?: string;
-    /**
-     * Custom UI component for AutoCompleteInput.
-     * Has access to all of [MessageInputContext](https://github.com/GetStream/stream-chat-react-native/blob/master/src/contexts/messageInputContext/MessageInputContext.tsx)
-     */
-    Input?: React.ComponentType<
-      Omit<MessageInputProps<At, Ch, Co, Ev, Me, Re, Us>, 'Input'> &
+> = {
+  /**
+   * Custom UI component for attach button.
+   *
+   * Defaults to and accepts same props as: [AttachButton](https://getstream.github.io/stream-chat-react-native/v3/#attachbutton)
+   */
+  AttachButton: React.ComponentType<AttachButtonProps<At, Ch, Co, Ev, Me, Re, Us>>;
+  clearEditingState: () => void;
+  clearQuotedMessageState: () => void;
+  /**
+   * Custom UI component for commands button.
+   *
+   * Defaults to and accepts same props as: [CommandsButton](https://getstream.github.io/stream-chat-react-native/v3/#commandsbutton)
+   */
+  CommandsButton: React.ComponentType<CommandsButtonProps<At, Ch, Co, Ev, Me, Re, Us>>;
+  editing: boolean | MessageType<At, Ch, Co, Ev, Me, Re, Us>;
+  editMessage: StreamChat<At, Ch, Co, Ev, Me, Re, Us>['updateMessage'];
+  /**
+   * Custom UI component for FileUploadPreview.
+   * Defaults to and accepts same props as: https://github.com/GetStream/stream-chat-react-native/blob/master/src/components/MessageInput/FileUploadPreview.tsx
+   */
+  FileUploadPreview: React.ComponentType<FileUploadPreviewProps<At, Ch, Co, Ev, Me, Re, Us>>;
+  /** When false, CommandsButton will be hidden */
+  hasCommands: boolean;
+  /** When false, FileSelectorIcon will be hidden */
+  hasFilePicker: boolean;
+  /** When false, ImageSelectorIcon will be hidden */
+  hasImagePicker: boolean;
+  /**
+   * Custom UI component for ImageUploadPreview.
+   * Defaults to and accepts same props as: https://github.com/GetStream/stream-chat-react-native/blob/master/src/components/MessageInput/ImageUploadPreview.tsx
+   */
+  ImageUploadPreview: React.ComponentType<ImageUploadPreviewProps<At, Ch, Co, Ev, Me, Re, Us>>;
+  /** Limit on allowed number of files to attach at a time. */
+  maxNumberOfFiles: number;
+  /**
+   * Custom UI component for more options button.
+   *
+   * Defaults to and accepts same props as: [MoreOptionsButton](https://getstream.github.io/stream-chat-react-native/v3/#moreoptionsbutton)
+   */
+  MoreOptionsButton: React.ComponentType<MoreOptionsButtonProps<At, Ch, Co, Ev, Me, Re, Us>>;
+  /** Limit on the number of lines in the text input before scrolling */
+  numberOfLines: number;
+  quotedMessage: boolean | MessageType<At, Ch, Co, Ev, Me, Re, Us>;
+  /**
+   * Custom UI component for send button.
+   *
+   * Defaults to and accepts same props as: [SendButton](https://getstream.github.io/stream-chat-react-native/v3/#sendbutton)
+   */
+  SendButton: React.ComponentType<SendButtonProps<At, Ch, Co, Ev, Me, Re, Us>>;
+  sendImageAsync: boolean;
+  sendMessage: (message: Partial<StreamMessage<At, Me, Us>>) => Promise<void>;
+  setQuotedMessageState: (message: MessageType<At, Ch, Co, Ev, Me, Re, Us>) => void;
+  /**
+   * Custom UI component to render checkbox with text ("Also send to channel") in Thread's input box.
+   * When ticked, message will also be sent in parent channel.
+   */
+  ShowThreadMessageInChannelButton: React.ComponentType<{
+    threadList?: boolean;
+  }>;
+  /**
+   * Custom UI component to render upload progress indicator on attachment preview.
+   *
+   * **Default** [UploadProgressIndicator](https://github.com/GetStream/stream-chat-react-native/blob/master/src/components/MessageInput/UploadProgressIndicator.tsx)
+   */
+  UploadProgressIndicator: React.ComponentType<UploadProgressIndicatorProps>;
+  /**
+   * Additional props for underlying TextInput component. These props will be forwarded as it is to TextInput component.
+   *
+   * @see See https://reactnative.dev/docs/textinput#reference
+   */
+  additionalTextInputProps?: TextInputProps;
+  /** Max number of suggestions to display in autocomplete list. Defaults to 10. */
+  autoCompleteSuggestionsLimit?: number;
+  /**
+   * Mapping of input triggers to the outputs to be displayed by the AutoCompleteInput
+   */
+  autoCompleteTriggerSettings?: (
+    settings: ACITriggerSettingsParams<At, Ch, Co, Ev, Me, Re, Us>,
+  ) => TriggerSettings<Co, Us>;
+  /**
+   * Compress image with quality (from 0 to 1, where 1 is best quality).
+   * On iOS, values larger than 0.8 don't produce a noticeable quality increase in most images,
+   * while a value of 0.8 will reduce the file size by about half or less compared to a value of 1.
+   * Image picker defaults to 0.8 for iOS and 1 for Android
+   */
+  compressImageQuality?: number;
+  /**
+   * Override file upload request
+   *
+   * @param file    File object - { uri: '', name: '' }
+   * @param channel Current channel object
+   *
+   * @overrideType Function
+   */
+  doDocUploadRequest?: (
+    file: {
+      name: string;
+      size?: string | number;
+      type?: string;
+      uri?: string;
+    },
+    channel: ChannelContextValue<At, Ch, Co, Ev, Me, Re, Us>['channel'],
+  ) => Promise<SendFileAPIResponse>;
+  /**
+   * Override image upload request
+   *
+   * @param file    File object - { uri: '' }
+   * @param channel Current channel object
+   *
+   * @overrideType Function
+   */
+  doImageUploadRequest?: (
+    file: {
+      name?: string;
+      uri?: string;
+    },
+    channel: ChannelContextValue<At, Ch, Co, Ev, Me, Re, Us>['channel'],
+  ) => Promise<SendFileAPIResponse>;
+  /** Initial value to set on input */
+  initialValue?: string;
+  /**
+   * Custom UI component for AutoCompleteInput.
+   * Has access to all of [MessageInputContext](https://github.com/GetStream/stream-chat-react-native/blob/master/src/contexts/messageInputContext/MessageInputContext.tsx)
+   */
+  Input?: React.ComponentType<
+    Omit<MessageInputProps<At, Ch, Co, Ev, Me, Re, Us>, 'Input'> &
       InputButtonsProps<At, Ch, Co, Ev, Me, Re, Us> & {
         getUsers: () => UserResponse<Us>[];
       }
-    >;
-    /**
-     * Custom UI component to override buttons on left side of input box
-     * Defaults to [InputButtons](https://github.com/GetStream/stream-chat-react-native/blob/master/src/components/MessageInput/InputButtons.tsx),
-     * which contain following components/buttons:
-     *
-     *  - AttachButton
-     *  - CommandsButtom
-     *
-     * You have access to following prop functions:
-     *
-     * - closeAttachmentPicker
-     * - openAttachmentPicker
-     * - openCommandsPicker
-     * - toggleAttachmentPicker
-     */
-    InputButtons?: React.ComponentType<InputButtonsProps<At, Ch, Co, Ev, Me, Re, Us>>;
-    mentionAllAppUsersEnabled?: boolean;
-    /** Object containing filters/sort/options overrides for an @mention user query */
-    mentionAllAppUsersQuery?: MentionAllAppUsersQuery<Us>;
-    /**
-     * Callback that is called when the text input's text changes. Changed text is passed as a single string argument to the callback handler.
-     */
-    onChangeText?: (newText: string) => void;
-    /**
-     * ref for input setter function
-     *
-     * @param ref [Ref object](https://reactjs.org/docs/refs-and-the-dom.html) for underling `TextInput` component.
-     *
-     * @overrideType Function
-     */
-    setInputRef?: (ref: TextInput | null) => void;
-  } & InputConfig;
+  >;
+  /**
+   * Custom UI component to override buttons on left side of input box
+   * Defaults to [InputButtons](https://github.com/GetStream/stream-chat-react-native/blob/master/src/components/MessageInput/InputButtons.tsx),
+   * which contain following components/buttons:
+   *
+   *  - AttachButton
+   *  - CommandsButtom
+   *
+   * You have access to following prop functions:
+   *
+   * - closeAttachmentPicker
+   * - openAttachmentPicker
+   * - openCommandsPicker
+   * - toggleAttachmentPicker
+   */
+  InputButtons?: React.ComponentType<InputButtonsProps<At, Ch, Co, Ev, Me, Re, Us>>;
+  mentionAllAppUsersEnabled?: boolean;
+  /** Object containing filters/sort/options overrides for an @mention user query */
+  mentionAllAppUsersQuery?: MentionAllAppUsersQuery<Us>;
+  /**
+   * Callback that is called when the text input's text changes. Changed text is passed as a single string argument to the callback handler.
+   */
+  onChangeText?: (newText: string) => void;
+  /**
+   * ref for input setter function
+   *
+   * @param ref [Ref object](https://reactjs.org/docs/refs-and-the-dom.html) for underling `TextInput` component.
+   *
+   * @overrideType Function
+   */
+  setInputRef?: (ref: TextInput | null) => void;
+} & InputConfig;
 
 export type MessageInputContextValue<
   At extends UnknownType = DefaultAttachmentType,
@@ -402,7 +402,7 @@ export type MessageInputContextValue<
   Me extends UnknownType = DefaultMessageType,
   Re extends UnknownType = DefaultReactionType,
   Us extends UnknownType = DefaultUserType,
-  > = LocalMessageInputContext<At, Co, Us> &
+> = LocalMessageInputContext<At, Co, Us> &
   Omit<InputMessageInputContextValue<At, Ch, Co, Ev, Me, Re, Us>, 'sendMessage'>;
 
 export const MessageInputContext = React.createContext({} as MessageInputContextValue);
@@ -415,12 +415,12 @@ export const MessageInputProvider = <
   Me extends UnknownType = DefaultMessageType,
   Re extends UnknownType = DefaultReactionType,
   Us extends UnknownType = DefaultUserType,
-  >({
-    children,
-    value,
-  }: PropsWithChildren<{
-    value: InputMessageInputContextValue<At, Ch, Co, Ev, Me, Re, Us>;
-  }>) => {
+>({
+  children,
+  value,
+}: PropsWithChildren<{
+  value: InputMessageInputContextValue<At, Ch, Co, Ev, Me, Re, Us>;
+}>) => {
   const { closePicker, openPicker, selectedPicker, setSelectedPicker } =
     useAttachmentPickerContext();
   const { client } = useChatContext<At, Ch, Co, Ev, Me, Re, Us>();
@@ -778,15 +778,15 @@ export const MessageInputProvider = <
   const triggerSettings = channel
     ? value.autoCompleteTriggerSettings
       ? value.autoCompleteTriggerSettings({
-        channel,
-        client,
-        onMentionSelectItem: onSelectItem,
-      })
+          channel,
+          client,
+          onMentionSelectItem: onSelectItem,
+        })
       : ACITriggerSettings<At, Ch, Co, Ev, Me, Re, Us>({
-        channel,
-        client,
-        onMentionSelectItem: onSelectItem,
-      })
+          channel,
+          client,
+          onMentionSelectItem: onSelectItem,
+        })
     : ({} as TriggerSettings<Co, Us>);
 
   const updateMessage = async () => {
@@ -886,8 +886,8 @@ export const MessageInputProvider = <
       const localUri = file.id
         ? await getLocalAssetUri(file.id)
         : file.uri?.match(/assets-library/)
-          ? await getLocalAssetUri(file.uri)
-          : file.uri;
+        ? await getLocalAssetUri(file.uri)
+        : file.uri;
 
       const uri = file.name || localUri || '';
       /**
@@ -897,17 +897,17 @@ export const MessageInputProvider = <
        * - the compressImageQuality number is not present or is 1 (meaning no compression)
        */
       const compressedUri = await (file.source === 'camera' ||
-        !file.height ||
-        !file.width ||
-        typeof value.compressImageQuality !== 'number' ||
-        value.compressImageQuality === 1
+      !file.height ||
+      !file.width ||
+      typeof value.compressImageQuality !== 'number' ||
+      value.compressImageQuality === 1
         ? uri
         : compressImage({
-          compressImageQuality: value.compressImageQuality,
-          height: file.height,
-          uri,
-          width: file.width,
-        }));
+            compressImageQuality: value.compressImageQuality,
+            height: file.height,
+            uri,
+            width: file.width,
+          }));
 
       if (value.doImageUploadRequest) {
         response = await value.doImageUploadRequest(file, channel);
@@ -1084,7 +1084,7 @@ export const useMessageInputContext = <
   Me extends UnknownType = DefaultMessageType,
   Re extends UnknownType = DefaultReactionType,
   Us extends UnknownType = DefaultUserType,
-  >() =>
+>() =>
   useContext(MessageInputContext) as unknown as MessageInputContextValue<
     At,
     Ch,
@@ -1109,8 +1109,8 @@ export const withMessageInputContext = <
   Me extends UnknownType = DefaultMessageType,
   Re extends UnknownType = DefaultReactionType,
   Us extends UnknownType = DefaultUserType,
-  >(
-    Component: React.ComponentType<P>,
+>(
+  Component: React.ComponentType<P>,
 ): React.FC<Omit<P, keyof MessageInputContextValue<At, Ch, Co, Ev, Me, Re, Us>>> => {
   const WithMessageInputContextComponent = (
     props: Omit<P, keyof MessageInputContextValue<At, Ch, Co, Ev, Me, Re, Us>>,
