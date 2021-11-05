@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, ViewStyle } from 'react-native';
 import Animated, { Extrapolate, interpolate, useAnimatedStyle } from 'react-native-reanimated';
 
 import { useTheme } from '../../../contexts/themeContext/ThemeContext';
@@ -10,10 +10,6 @@ import { deleteFile, saveFile, shareImage } from '../../../native';
 import type { Photo } from '../ImageGallery';
 
 import type { DefaultUserType, UnknownType } from '../../../types/types';
-
-const ReanimatedSafeAreaView = Animated.createAnimatedComponent
-  ? Animated.createAnimatedComponent(SafeAreaView)
-  : SafeAreaView;
 
 const styles = StyleSheet.create({
   centerContainer: {
@@ -110,18 +106,6 @@ export const ImageGalleryFooter = <Us extends UnknownType = DefaultUserType>(pro
   } = useTheme();
   const { t } = useTranslationContext();
 
-  const footerStyle = useAnimatedStyle<ViewStyle>(
-    () => ({
-      opacity: opacity.value,
-      transform: [
-        {
-          translateY: interpolate(visible.value, [0, 1], [height, 0], Extrapolate.CLAMP),
-        },
-      ],
-    }),
-    [],
-  );
-
   const share = async () => {
     setShareMenuOpen(true);
     try {
@@ -140,12 +124,8 @@ export const ImageGalleryFooter = <Us extends UnknownType = DefaultUserType>(pro
   };
 
   return (
-    <Animated.View
-      onLayout={(event) => setHeight(event.nativeEvent.layout.height)}
-      pointerEvents={'box-none'}
-      style={styles.wrapper}
-    >
-      <ReanimatedSafeAreaView style={[{ backgroundColor: white }, container, footerStyle]}>
+    <View pointerEvents={'box-none'} style={styles.wrapper}>
+      <View style={[container]}>
         <View style={[styles.innerContainer, innerContainer]}>
           {leftElement ? (
             leftElement({ openGridView, photo, share, shareMenuOpen })
@@ -178,8 +158,8 @@ export const ImageGalleryFooter = <Us extends UnknownType = DefaultUserType>(pro
             </TouchableOpacity>
           )}
         </View>
-      </ReanimatedSafeAreaView>
-    </Animated.View>
+      </View>
+    </View>
   );
 };
 
