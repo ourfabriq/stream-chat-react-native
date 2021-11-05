@@ -196,11 +196,13 @@ export type LocalMessageInputContext<
   setSendThreadMessageInChannel: React.Dispatch<React.SetStateAction<boolean>>;
   setShowMoreOptions: React.Dispatch<React.SetStateAction<boolean>>;
   setText: React.Dispatch<React.SetStateAction<string>>;
+  setTextInputFocused: React.Dispatch<React.SetStateAction<boolean>>;
   showMoreOptions: boolean;
   /**
    * Text value of the TextInput
    */
   text: string;
+  textInputFocused: boolean;
   toggleAttachmentPicker: () => void;
   /**
    * Mapping of input triggers to the outputs to be displayed by the AutoCompleteInput
@@ -437,6 +439,7 @@ export const MessageInputProvider = <
     };
   }>({});
   const [giphyActive, setGiphyActive] = useState(false);
+  const [textInputFocused, setTextInputFocused] = useState(false);
   const [sendThreadMessageInChannel, setSendThreadMessageInChannel] = useState(false);
   const { editing, hasFilePicker, hasImagePicker, initialValue, maxNumberOfFiles } = value;
   const {
@@ -1048,8 +1051,10 @@ export const MessageInputProvider = <
     setSendThreadMessageInChannel,
     setShowMoreOptions,
     setText,
+    setTextInputFocused,
     showMoreOptions,
     text,
+    textInputFocused,
     thread,
     toggleAttachmentPicker,
     triggerSettings,
