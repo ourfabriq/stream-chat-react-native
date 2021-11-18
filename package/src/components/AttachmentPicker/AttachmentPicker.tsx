@@ -344,7 +344,7 @@ export const AttachmentPicker = React.forwardRef(
     return (
       <>
         <BottomSheet
-          containerHeight={fullScreenHeight}
+          // containerHeight={fullScreenHeight} // This prevents extra re-renders after measuring layout, but Samsung soft nav bars can glitch these measurements and leave the drawer hovering over screen content
           handleComponent={
             /**
              * using `null` here instead of `style={{ opacity: photoError ? 0 : 1 }}`
