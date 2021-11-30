@@ -40,13 +40,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   container: {
+    alignItems: 'center',
     overflow: 'hidden',
     width: 256,
   },
   giphy: {
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
-    height: 140,
   },
   giphyContainer: {
     alignItems: 'center',
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
   },
   giphyText: { fontSize: 11, fontWeight: '600' },
   margin: {
+    alignItems: 'center',
     margin: 0,
   },
   row: { flexDirection: 'row' },
@@ -138,7 +139,17 @@ const GiphyWithContext = <
     preventPress,
   } = props;
 
+  const [imageSize, setImageSize] =
+    React.useState<undefined | { height: number; width: number }>(undefined);
+
   const { actions, image_url, thumb_url, title, type } = attachment;
+
+  const uri = image_url || thumb_url;
+
+  React.useLayoutEffect(() => {
+    if (!uri) return;
+    Image.getSize(makeImageCompatibleUrl(uri), (width, height) => setImageSize({ height, width }));
+  }, [uri]);
 
   const {
     theme: {
@@ -163,9 +174,14 @@ const GiphyWithContext = <
     },
   } = useTheme();
 
-  const uri = image_url || thumb_url;
+  if (!uri || !imageSize) return null;
 
-  if (!uri) return null;
+  const imageStyle = {
+    aspectRatio: imageSize.width / imageSize.height,
+    height: undefined,
+    minHeigth: 256,
+    width: 256,
+  };
 
   return actions ? (
     <View
@@ -177,9 +193,9 @@ const GiphyWithContext = <
     >
       <View style={styles.margin}>
         <Image
-          resizeMode='cover'
+          resizeMode='contain'
           source={{ uri: makeImageCompatibleUrl(uri) }}
-          style={[styles.giphy, giphy]}
+          style={[imageStyle, styles.giphy, giphy]}
         />
         <View style={[styles.giphyMask, giphyMask]}>
           <View style={[styles.giphyContainer, { backgroundColor: overlay_dark }, giphyContainer]}>
@@ -266,9 +282,9 @@ const GiphyWithContext = <
     >
       <View>
         <Image
-          resizeMode='cover'
+          resizeMode='contain'
           source={{ uri: makeImageCompatibleUrl(uri) }}
-          style={[styles.giphy, giphy]}
+          style={[imageStyle, styles.giphy, giphy]}
         />
         <View style={[styles.giphyMask, giphyMask]}>
           <View style={[styles.giphyContainer, { backgroundColor: overlay_dark }, giphyContainer]}>
