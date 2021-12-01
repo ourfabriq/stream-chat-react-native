@@ -179,7 +179,6 @@ const GiphyWithContext = <
   const imageStyle = {
     aspectRatio: imageSize.width / imageSize.height,
     height: undefined,
-    minHeigth: 256,
     width: 256,
   };
 
