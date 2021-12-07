@@ -668,6 +668,12 @@ export const MessageInputProvider = <
             image_url: file.url,
             type: 'image',
           } as Attachment<At>);
+        } else if (file.file.type?.startsWith('video/')) {
+          attachments.push({
+            asset_url: file.url,
+            fallback: file.file.name,
+            type: 'video',
+          } as Attachment<At>);
         } else {
           attachments.push({
             asset_url: file.url,
