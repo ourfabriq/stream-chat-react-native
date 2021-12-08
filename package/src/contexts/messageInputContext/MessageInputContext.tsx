@@ -66,6 +66,7 @@ export type FileUpload = {
   };
   id: string;
   state: string;
+  thumbnail?: string;
   url?: string;
 };
 
@@ -668,6 +669,13 @@ export const MessageInputProvider = <
             image_url: file.url,
             type: 'image',
           } as Attachment<At>);
+        } else if (file.file.type?.startsWith('video/')) {
+          attachments.push({
+            asset_url: file.url,
+            fallback: file.file.name,
+            thumbnail: file.thumbnail,
+            type: 'video',
+          } as unknown as Attachment<At>);
         } else {
           attachments.push({
             asset_url: file.url,
