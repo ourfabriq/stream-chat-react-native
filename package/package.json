@@ -79,10 +79,10 @@
     "metro-react-native-babel-preset": "0.66.0",
     "path": "0.12.7",
     "react-art": "^17.0.2",
-    "react-native-markdown-package": "1.8.1",
-    "stream-chat": "~3.13.1"
+    "react-native-markdown-package": "1.8.1"
   },
   "peerDependencies": {
+    "stream-chat": "4.2.0",
     "react": "*",
     "react-dom": "*",
     "react-native": "*",
