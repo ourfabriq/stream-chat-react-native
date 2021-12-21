@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, LayoutAnimation } from 'react-native';
 
 import {
   MessageInputContextValue,
