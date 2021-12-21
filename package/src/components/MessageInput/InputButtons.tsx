@@ -93,30 +93,44 @@ export const InputButtonsWithContext = <
     },
   } = useTheme();
 
+  const [hasFocusedInput, setHasFocusedInput] = useState(false);
+
   if (giphyActive) {
     return null;
   }
 
-  if (textInputFocused) {
-    return null;
+  if (textInputFocused && !hasFocusedInput) {
+    setHasFocusedInput(true);
+    setShowMoreOptions(false);
+  } else if (!textInputFocused && hasFocusedInput) {
+    setHasFocusedInput(false);
+    setShowMoreOptions(true);
   }
 
-  return !showMoreOptions && (hasImagePicker || hasFilePicker) && hasCommands ? (
-    <MoreOptionsButton handleOnPress={() => setShowMoreOptions(true)} />
-  ) : (
+  return (
     <>
-      {(hasImagePicker || hasFilePicker) && uploadsEnabled !== false && (
-        <View
-          style={[hasCommands ? styles.attachButtonContainer : undefined, attachButtonContainer]}
-        >
-          <AttachButton handleOnPress={toggleAttachmentPicker} />
-        </View>
-      )}
-      {hasCommands && !text && (
-        <View style={commandsButtonContainer}>
-          <CommandsButton handleOnPress={openCommandsPicker} />
-        </View>
-      )}
+      <View style={{flex: 0}}>
+        {showMoreOptions && (hasImagePicker || hasFilePicker || hasCommands) && (
+          <>
+            {(hasImagePicker || hasFilePicker) && uploadsEnabled !== false && (
+              <View style={[hasCommands ? styles.attachButtonContainer : undefined, attachButtonContainer]}>
+                <AttachButton handleOnPress={toggleAttachmentPicker} />
+              </View>
+            )}
+            {hasCommands && !text && (
+              <View style={commandsButtonContainer}>
+                <CommandsButton handleOnPress={openCommandsPicker} />
+              </View>
+            )}
+          </>
+        )}
+      </View>
+      <MoreOptionsButton
+        handleOnPress={() => {
+          LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+          setShowMoreOptions(!showMoreOptions);
+        }}
+      />
     </>
   );
 };
