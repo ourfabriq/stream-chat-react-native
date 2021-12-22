@@ -125,12 +125,12 @@ export const InputButtonsWithContext = <
           </>
         )}
       </View>
-      <MoreOptionsButton
+      {!showMoreOptions && <MoreOptionsButton
         handleOnPress={() => {
           LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-          setShowMoreOptions(!showMoreOptions);
+          setShowMoreOptions(true);
         }}
-      />
+      />}
     </>
   );
 };
