@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { LayoutAnimation, StyleSheet, View } from 'react-native';
 
 import {
   MessageInputContextValue,
@@ -113,7 +113,12 @@ export const InputButtonsWithContext = <
         {showMoreOptions && (hasImagePicker || hasFilePicker || hasCommands) && (
           <>
             {(hasImagePicker || hasFilePicker) && uploadsEnabled !== false && (
-              <View style={[hasCommands ? styles.attachButtonContainer : undefined, attachButtonContainer]}>
+              <View
+                style={[
+                  hasCommands ? styles.attachButtonContainer : undefined,
+                  attachButtonContainer,
+                ]}
+              >
                 <AttachButton handleOnPress={toggleAttachmentPicker} />
               </View>
             )}
