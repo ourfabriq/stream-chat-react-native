@@ -41,6 +41,7 @@ export const Skeleton: React.FC = () => {
         gradientStart,
         gradientStop,
         height = 64,
+        maskFillColor,
       },
       colors: { border, grey_gainsboro, white_snow },
     },

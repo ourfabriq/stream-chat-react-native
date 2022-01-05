@@ -675,7 +675,7 @@ export const MessageInputProvider = <
             fallback: file.file.name,
             thumbnail: file.thumbnail,
             type: 'video',
-          } as unknown as Attachment<At>);
+          } as Attachment<At>);
         } else {
           attachments.push({
             asset_url: file.url,
