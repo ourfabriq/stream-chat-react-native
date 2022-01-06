@@ -1,6 +1,5 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-
+import React, { useState } from 'react';
+import { StyleSheet, View, LayoutAnimation } from 'react-native';
 import {
   MessageInputContextValue,
   useMessageInputContext,
@@ -106,7 +105,7 @@ export const InputButtonsWithContext = <
     setHasFocusedInput(false);
     setShowMoreOptions(true);
   }
-
+  
   return (
     <>
       <View style={{flex: 0}}>
@@ -125,12 +124,12 @@ export const InputButtonsWithContext = <
           </>
         )}
       </View>
-      <MoreOptionsButton
+      {!showMoreOptions && <MoreOptionsButton
         handleOnPress={() => {
           LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-          setShowMoreOptions(!showMoreOptions);
+          setShowMoreOptions(true);
         }}
-      />
+      />}
     </>
   );
 };

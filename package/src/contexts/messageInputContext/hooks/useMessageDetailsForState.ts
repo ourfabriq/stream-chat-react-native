@@ -52,11 +52,6 @@ export const useMessageDetailsForState = <
   const initialTextValue = initialValue || '';
   const [text, setText] = useState(initialTextValue);
 
-  useEffect(() => {
-    if (text !== initialTextValue) {
-      setShowMoreOptions(true); // always show more option
-    }
-  }, [text]);
 
   const messageValue =
     typeof message === 'boolean' ? '' : `${message.id}${message.text}${message.updated_at}`;
