@@ -676,6 +676,13 @@ export const MessageInputProvider = <
             thumbnail: file.thumbnail,
             type: 'video',
           } as unknown as Attachment<At>);
+        } else if (file.file.type?.startsWith('audio/')) {
+          attachments.push({
+            asset_url: file.url,
+            fallback: file.file.name,
+            thumbnail: file.thumbnail,
+            type: 'audio',
+          } as unknown as Attachment<At>);
         } else {
           attachments.push({
             asset_url: file.url,
