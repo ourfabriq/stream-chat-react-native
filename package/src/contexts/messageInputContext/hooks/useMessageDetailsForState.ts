@@ -40,6 +40,7 @@ export const useMessageDetailsForState = <
   initialValue?: string,
 ) => {
   const [fileUploads, setFileUploads] = useState<FileUpload[]>([]);
+  const [metadata, setMetadata] = useState<any>(undefined);
   const [imageUploads, setImageUploads] = useState<ImageUpload[]>([]);
   const [mentionedUsers, setMentionedUsers] = useState(
     (!isEditingBoolean<At, Ch, Co, Ev, Me, Re, Us>(message) &&
@@ -61,6 +62,7 @@ export const useMessageDetailsForState = <
       const newFileUploads = [];
       const newImageUploads = [];
 
+      setMetadata(message?.metadata);
       const attachments = Array.isArray(message.attachments) ? message.attachments : [];
 
       for (const attachment of attachments) {
@@ -99,10 +101,12 @@ export const useMessageDetailsForState = <
     fileUploads,
     imageUploads,
     mentionedUsers,
+    metadata,
     numberOfUploads,
     setFileUploads,
     setImageUploads,
     setMentionedUsers,
+    setMetadata,
     setNumberOfUploads,
     setShowMoreOptions,
     setText,
