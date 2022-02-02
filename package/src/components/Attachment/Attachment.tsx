@@ -80,8 +80,14 @@ const AttachmentWithContext = <
     );
   }
 
-  if (attachment.type === 'file' || attachment.type === 'audio') {
+  if (attachment.type === 'file') {
     return <FileAttachment attachment={attachment} />;
+  }
+
+  if (attachment.type === 'audio') {
+    return (
+      <Card {...attachment} />
+    );
   }
 
   if (attachment.type === 'video' && attachment.asset_url && attachment.image_url) {
