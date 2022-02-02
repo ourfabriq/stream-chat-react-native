@@ -126,6 +126,7 @@ export type LocalMessageInputContext<
    *
    */
   fileUploads: FileUpload[];
+  metadata: any;
   giphyActive: boolean;
   /**
    * An array of image objects which are set for upload. It has the following structure:
@@ -186,6 +187,7 @@ export type LocalMessageInputContext<
     }>
   >;
   setFileUploads: React.Dispatch<React.SetStateAction<FileUpload[]>>;
+  setMetadata: React.Dispatch<React.SetStateAction<any>>;
   setGiphyActive: React.Dispatch<React.SetStateAction<boolean>>;
   setImageUploads: React.Dispatch<React.SetStateAction<ImageUpload[]>>;
   /**
@@ -448,9 +450,11 @@ export const MessageInputProvider = <
     imageUploads,
     mentionedUsers,
     numberOfUploads,
+    metadata,
     setFileUploads,
     setImageUploads,
     setMentionedUsers,
+    setMetadata,
     setNumberOfUploads,
     setShowMoreOptions,
     setText,
@@ -610,6 +614,7 @@ export const MessageInputProvider = <
       (prevNumberOfUploads) => prevNumberOfUploads - (pendingAttachments?.length || 0),
     );
     setText('');
+    setMetadata(undefined);
   };
 
   const sendMessage = async () => {
@@ -722,6 +727,7 @@ export const MessageInputProvider = <
       try {
         value.sendMessage({
           attachments,
+          metadata,
           mentioned_users: uniq(mentionedUsers),
           /** Parent message id - in case of thread */
           parent_id: thread?.id,
@@ -762,6 +768,7 @@ export const MessageInputProvider = <
       try {
         value.sendMessage({
           attachments,
+          metadata,
           mentioned_users: [],
           parent_id: thread?.id,
           quoted_message_id:
@@ -1040,6 +1047,7 @@ export const MessageInputProvider = <
     inputBoxRef,
     isValidMessage,
     mentionedUsers,
+    metadata,
     numberOfUploads,
     onChange,
     onSelectItem,
@@ -1062,6 +1070,7 @@ export const MessageInputProvider = <
     setImageUploads,
     setInputBoxRef,
     setMentionedUsers,
+    setMetadata,
     setNumberOfUploads,
     setSendThreadMessageInChannel,
     setShowMoreOptions,
