@@ -62,7 +62,7 @@ export const useMessageDetailsForState = <
       const newFileUploads = [];
       const newImageUploads = [];
 
-      setMetadata(message?.metadata || undefined);
+      setMetadata(message?.metadata);
       const attachments = Array.isArray(message.attachments) ? message.attachments : [];
 
       for (const attachment of attachments) {
