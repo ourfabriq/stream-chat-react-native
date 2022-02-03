@@ -103,7 +103,7 @@ const MessageTextContainerWithContext = <
   // tried doing this with a custom component, gave in after two hours
   const { isMyMessage } = useMessageContext();
   const additionalStyles = isMyMessage
-    ? { backgroundColor: '#04BFDA' }
+    ? { backgroundColor: '#18024C' }
     : { backgroundColor: '#3B0096' };
   if (!message.text) return null;
 
