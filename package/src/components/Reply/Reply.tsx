@@ -195,7 +195,7 @@ const ReplyWithContext = <
           message={{
             ...quotedMessage,
             text: quotedMessage.deleted_at
-              ? `_${t('Message deleted')}_`
+              ? `${t('Message deleted')}`
               : quotedMessage.text
               ? quotedMessage.text.length > 170
                 ? `${quotedMessage.text.slice(0, 170)}...`
