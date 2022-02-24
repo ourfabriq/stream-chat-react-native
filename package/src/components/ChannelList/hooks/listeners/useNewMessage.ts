@@ -28,6 +28,10 @@ type Parameters<
 > = {
   lockChannelOrder: boolean;
   setChannels: React.Dispatch<React.SetStateAction<Channel<At, Ch, Co, Ev, Me, Re, Us>[]>>;
+  onMessageNew?: (
+    setChannels: React.Dispatch<React.SetStateAction<Channel<At, Ch, Co, Ev, Me, Re, Us>[]>>,
+    event: Event<At, Ch, Co, Ev, Me, Re, Us>,
+  ) => void;
 };
 
 export const useNewMessage = <
@@ -39,6 +43,7 @@ export const useNewMessage = <
   Re extends UnknownType = DefaultReactionType,
   Us extends UnknownType = DefaultUserType,
 >({
+  onMessageNew,
   lockChannelOrder,
   setChannels,
 }: Parameters<At, Ch, Co, Ev, Me, Re, Us>) => {
@@ -46,15 +51,18 @@ export const useNewMessage = <
 
   useEffect(() => {
     const handleEvent = (event: Event<At, Ch, Co, Ev, Me, Re, Us>) => {
-      setChannels((channels) => {
-        if (!lockChannelOrder && event.cid) {
-          return moveChannelUp<At, Ch, Co, Ev, Me, Re, Us>({
-            channels,
-            cid: event.cid,
-          });
-        }
-        return [...channels];
-      });
+      if (typeof onMessageNew === 'function') {
+        onMessageNew(setChannels, event);
+      } else {
+        setChannels((channels) => {
+          if (!lockChannelOrder && event.cid) {
+            return moveChannelUp<At, Ch, Co, Ev, Me, Re, Us>({
+              channels,
+              cid: event.cid,
+            });
+          }
+          return [...channels];
+        });}
     };
 
     client.on('message.new', handleEvent);
