@@ -322,8 +322,9 @@ export const ChannelList = <
   useNewMessage({
     lockChannelOrder,
     setChannels,
+    onMessageNew
   });
-
+  
   useNewMessageNotification({
     onMessageNew,
     setChannels,
