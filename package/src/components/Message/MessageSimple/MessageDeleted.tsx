@@ -127,7 +127,7 @@ const MessageDeletedWithContext = <
       >
         <MessageTextContainer<At, Ch, Co, Ev, Me, Re, Us>
           markdownStyles={merge({ em: { color: grey } }, deletedText)}
-          message={{ ...message, text: `_${t('Message deleted')}_` }}
+          message={{ ...message, text: t('Message deleted') }}
         />
       </View>
       <MessageFooter formattedDate={formattedDate} isDeleted />
